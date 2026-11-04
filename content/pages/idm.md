@@ -1,6 +1,6 @@
 <p align="center"><img src="/content/images/sat.png" alt="SAT logo"></p>
 
-<h1 align="center">Red Hat Satellite</h1>
+<h1 align="center">Red Hat IDM</h1>
 <p align="center">
 <br>Workshop elaborado para el cliente Autoridad Nacional de Migraciones
   <br><a href="https://www.redhat.com"><strong>Red Hat</strong></a>
