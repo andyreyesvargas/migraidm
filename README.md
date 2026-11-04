@@ -7,7 +7,7 @@
 
 
 
-<h3><a href="content/pages/idm.md">Sistema de Gestión de Identidades/a></h3>
+<h3><a href="content/pages/idm.md">Sistema de Gestión de Identidades</a></h3>
 
 | Nro | Alumno | Red | IP Satellite | IP Client |
 | --- | --- | --- | --- | --- |
