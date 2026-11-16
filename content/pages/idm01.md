@@ -38,7 +38,7 @@ Desde la perspectiva de IdM, el dominio incluye los siguientes tipos de máquina
 
 <h3><strong>Servicios alojados en los servidores IDM</strong></h3>
 
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm101.png?raw=true"></p>
+<p align="center"><img src="../images/idm01.png?raw=true"></p>
 
 <br><strong>KDC de Kerberos</strong>
 <br>IdM utiliza el protocolo Kerberos para admitir el inicio de sesión único. Con Kerberos, el usuario solo necesita presentar el nombre de usuario y la contraseña correctos una vez. Luego, el usuario puede acceder a los servicios de IdM sin que el sistema vuelva a solicitar las credenciales.
