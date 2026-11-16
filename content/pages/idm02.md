@@ -103,25 +103,16 @@ En caso de des-conexión abrir otro terminal y ejecutar el comando indicado para
 # screen -r 3081
 ```
 
-Al validar la disponibilidad de los repositorios se podrá activar el módulo de IDM con:
+Para instalar el servidor de IDM usamos
+```
+[root@server ~]# yum install ipa-server
+```
+Como vamos a implementar el servidor IDM con su propio DNS, debemos instalar adicionalmente
+```
+[root@server ~]# yum install ipa-server-dns
+```
 
-`# dnf module enable idm:DL1`
-
-`# dnf distro-sync`
-
-Finalmente, el proceso de instalación se podrá iniciar con el comando:
-
-`# dnf module install idm:DL1/server`
-
-Considerar que el proceso de instalación puede realizarse con diferentes módulos además del servidor base, también existen otros módulos:
-<br>- server
-<br>- dns
-<br>- adtrust
-<br>- client
-
-Ahora podemos instalar los modulos de dns y el cliente idm
-<br>`# dnf module install idm:DL1/dns`
-<br>`# dnf module install idm:DL1/client`
+En caso se requiera instalar complementos de IDM como integracion con Active Directory o Ansible, se podrán instalar a posterior
 
 <strong>## Configuración del servidor Red Hat IDM</strong>
 
