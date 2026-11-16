@@ -117,16 +117,22 @@ En caso se requiera instalar complementos de IDM como integracion con Active Dir
 <strong>## Configuración del servidor Red Hat IDM</strong>
 
 Una vez instalado los paquetes necesarios para el servidor Red Hat IDM procedemos a configurar el servicio, para ello primero debemos validar que el servidor cumpla una resolución de nombres básica con el comando `dig`
-
-`# dig +short idm.domain08.net
+```
+[root@server ~]# dig +short server.migraciones09.gob.pe
+```
 
 En caso de no contar un registro DNS podemos utilizar el registro local en el archivo `/etc/hosts` para cumplir con el proceso de instalación hasta que el administrador de red cree el registro en el DNS corporativo
-
-`# echo "192.168.100.18 idm.domain08.net" >> /etc/hosts`
+```
+[root@server ~]# echo "192.168.109.10 server.migraciones09.gob.pe" >> /etc/hosts
+```
 
 Validamos el nuevo registro
-
-`# cat /etc/hosts`
+```
+[root@server ~]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.109.10 server.migraciones09.gob.pe
+```
 
 Para configurar el sistema usamos el tool `ipa-server-install` el cual realiza las preguntas necesarias para generar la configuracion del sistema
 
@@ -136,38 +142,103 @@ En caso el dominio ya exista en la red o internet, el instalador nos mostrara la
 
 `# ipa-server-install  --allow-zone-overlap`
 
-Debemos responder las preguntas de instalar con la siguiente configuración sugerida
-<br>Do you want to configure integrated DNS (BIND)?: <strong>yes</strong>
-<br>Server host name: <strong>idm.domain08.net</strong>
-<br>Please confirm the domain name: <strong>domain08.net</strong>
-<br>Please provide a realm name: <strong>DOMAIN08.NET</strong>
-<br>Directory Manager password: <strong>Passw0rd$</strong>
-<br>Password (confirm): <strong>Passw0rd$</strong>
-<br>IPA admin password: <strong>Passw0rd$</strong>
-<br>Password (confirm): <strong>Passw0rd$</strong>
-<br>Do you want to configure DNS forwarders?: <strong>no</strong>
-<br>Do you want to search for missing reverse zones?: <strong>no</strong>
-<br>Do you want to configure chrony with NTP server or pool address?: <strong>no</strong>
-<br>
-<br>Finalmente se confirman los cambios
-<br>Continue to configure the system with these values?: <strong>yes</strong>
-
-Con la instalación del sistema se debe también aperturar los servicios a través del firewall, para ello configuramos las reglas de firewall de acceso
-
-<br>`# firewall-cmd --permanent --add-service=http`
-<br>`# firewall-cmd --permanent --add-service=https`
-<br>`# firewall-cmd --permanent --add-service=ldap`
-<br>`# firewall-cmd --permanent --add-service=ldaps`
-<br>`# firewall-cmd --permanent --add-service=kerberos`
-<br>`# firewall-cmd --permanent --add-service=dns`
-<br>`# firewall-cmd --permanent --add-service=ntp`
-<br>`# firewall-cmd --reload`
-
-Ahora podemos examinar la plataforma ingresando a la ruta `https://idm.domain08.net`, de ser necesario agregar `192.168.100.18 idm.domain08.net` al archivo hosts de su estación de trabajo.
-
-Cambien podemos examinar el estado de los servicios idm con el comando
 ```
-# ipactl status
+[root@server ~]# ipa-server-install --allow-zone-overlap
+
+The log file for this installation can be found in /var/log/ipaserver-install.log
+==============================================================================
+This program will set up the IPA Server.
+Version 4.11.0
+
+This includes:
+  * Configure a stand-alone CA (dogtag) for certificate management
+  * Configure the NTP client (chronyd)
+  * Create and configure an instance of Directory Server
+  * Create and configure a Kerberos Key Distribution Center (KDC)
+  * Configure Apache (httpd)
+  * Configure SID generation
+  * Configure the KDC to enable PKINIT
+
+To accept the default shown in brackets, press the Enter key.
+
+Do you want to configure integrated DNS (BIND)? [no]: yes
+
+Enter the fully qualified domain name of the computer
+on which you're setting up server software. Using the form
+<hostname>.<domainname>
+Example: master.example.com
+
+
+Server host name [server.migraciones09.gob.pe]:
+
+Warning: skipping DNS resolution of host server.migraciones09.gob.pe
+The domain name has been determined based on the host name.
+
+Please confirm the domain name [migraciones09.gob.pe]:
+
+The kerberos protocol requires a Realm name to be defined.
+This is typically the domain name converted to uppercase.
+
+Please provide a realm name [MIGRACIONES09.GOB.PE]:
+Certain directory server operations require an administrative user.
+This user is referred to as the Directory Manager and has full access
+to the Directory for system management tasks and will be added to the
+instance of directory server created for IPA.
+The password must be at least 8 characters long.
+
+Directory Manager password:
+Password (confirm):
+
+The IPA server requires an administrative user, named 'admin'.
+This user is a regular system account used for IPA server administration.
+
+IPA admin password:
+Password (confirm):
+
+Checking DNS domain migraciones09.gob.pe., please wait ...
+DNS zone migraciones09.gob.pe. already exists in DNS and is handled by server(s): idm.migraciones.gob.pe. Please make sure that the domain is properly delegated to this IPA server.
+Do you want to configure DNS forwarders? [yes]:
+Following DNS servers are configured in /etc/resolv.conf: 192.168.100.129
+Do you want to configure these servers as DNS forwarders? [yes]:
+All detected DNS servers were added. You can enter additional addresses now:
+Enter an IP address for a DNS forwarder, or press Enter to skip:
+DNS forwarders: 192.168.100.129
+Checking DNS forwarders, please wait ...
+DNS server 192.168.100.129 does not support DNSSEC: answer to query '. SOA' is missing DNSSEC signatures (no RRSIG data)
+Please fix forwarder configuration to enable DNSSEC support.
+
+DNS server 192.168.100.129: answer to query '. SOA' is missing DNSSEC signatures (no RRSIG data)
+Please fix forwarder configuration to enable DNSSEC support.
+WARNING: DNSSEC validation will be disabled
+Do you want to search for missing reverse zones? [yes]:
+Reverse record for IP address 192.168.109.10 already exists
+Trust is configured but no NetBIOS domain name found, setting it now.
+Enter the NetBIOS name for the IPA domain.
+Only up to 15 uppercase ASCII letters, digits and dashes are allowed.
+Example: EXAMPLE.
+
+
+NetBIOS domain name [MIGRACIONES09]:
+
+Do you want to configure chrony with NTP server or pool address? [no]:
+
+The IPA Master Server will be configured with:
+Hostname:       server.migraciones09.gob.pe
+IP address(es): 192.168.109.10
+Domain name:    migraciones09.gob.pe
+Realm name:     MIGRACIONES09.GOB.PE
+
+The CA will be configured with:
+Subject DN:   CN=Certificate Authority,O=MIGRACIONES09.GOB.PE
+Subject base: O=MIGRACIONES09.GOB.PE
+Chaining:     self-signed
+
+BIND DNS server will be configured to serve IPA domain with:
+Forwarders:       192.168.100.129
+Forward policy:   only
+Reverse zone(s):  No reverse zone
+
+Continue to configure the system with these values? [no]: yes
 ```
 
 <strong>## Desinstalación del servidor Red Hat IDM</strong>
