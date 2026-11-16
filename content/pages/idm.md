@@ -11,23 +11,17 @@
 
 <h2>Alcance</h2>
 
-Manual de procedimientos del workshop de la solución Red Hat Satellite versión 6.18 sobre plataforma Red Hat Enterprise Linux 9.4
+Manual de procedimientos del workshop de la solución Red Hat IDM versión 4.13 sobre plataforma Red Hat Enterprise Linux 9.4
 
 <h2>Tabla de contenidos</h2>
-<br><a href="sat01.md">Introducción a Red Hat Satellite
-<br><a href="sat02.md">Entendimiento y visualización del proceso de instalación</a>
-<br><a href="sat03.md">Navegación por la UI de Red Hat Satellite y conocimiento de sus componentes</a>
-<br><a href="sat04.md">Navegación por la UI de access.redhat.com y su integración con RH Satellite</a>
-<br><a href="sat05.md">Gestión de organizaciones y ubicaciones</a>
-<br><a href="sat06.md">Gestión de usuarios, grupos y roles</a>
-<br><a href="sat07.md">Gestión de manifiestos y repositorios</a>
-<br><a href="sat08.md">Gestión de Contenido</a>
-<br><a href="sat09.md">Gestión de Ciclo de vida</a>
-<br><a href="sat10.md">Registrando Hosts de contenido</a>
-<br><a href="sat11.md">Gestión de paquetería de software</a>
-<br><a href="sat12.md">Gestión de ejecución remota vía Red Hat Satellite</a>
-<br><a href="sat13.md">Gestión de ejecución remota con ansible vía Red Hat Satellite</a>
-<br><a href="sat14.md">Gestión de Red Hat Insights</a>
-<br><a href="sat15.md">Gestión de Políticas de Seguridad Openscap</a>
+<br><a href="idm01.md">Introducción a Red Hat IDM</a>
+<br><a href="idm02.md">Entendimiento y visualización del proceso de instalación</a>
+<br><a href="idm03.md">Creación de usuarios y políticas de usuario</a>
+<br><a href="idm04.md">Creación de registros en el DNS de IDM</a>
+<br><a href="idm05.md">Definición de reglas de acceso</a>
+<br><a href="idm06.md">Registrar una maquina cliente al IDM y valida su funcionamiento</a>
+<br><a href="idm07.md">Lineamientos de aseguramiento</a>
+<br><a href="idm08.md">Gestión de auditoría</a>
+<br><a href="idm09.md">Tareas de mantenimiento sobre la infraestructura de Red Hat IDM</a>
 
 <p><br><a href="../../README.md">volver</a></p>
