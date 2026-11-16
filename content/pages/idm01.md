@@ -60,7 +60,7 @@ Desde la perspectiva de IdM, el dominio incluye los siguientes tipos de máquina
 <br>Los clientes IdM son máquinas configuradas para operar dentro del dominio IdM. Interactúan con los servidores IdM para acceder a los recursos del dominio. Por ejemplo, pertenecen a los dominios Kerberos configurados en los servidores, reciben certificados y tickets emitidos por los servidores y utilizan otros servicios centralizados para la autenticación y autorización.
 <br>Un cliente de IdM no requiere software de cliente dedicado para interactuar como parte del dominio. Solo requiere la configuración adecuada del sistema de ciertos servicios y bibliotecas, como Kerberos o DNS. Esta configuración indica a la máquina cliente que utilice los servicios de IdM.
 
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm102.png?raw=true"></p>
+<p align="center"><img src="../images/idm02.png?raw=true"></p>
 
 <br><strong>Daemon de servicios de seguridad del sistema</strong>
 <br>System Security Services Daemon (SSSD) es una aplicación del lado del cliente para almacenar en caché las credenciales. Se recomienda usar SSSD en máquinas cliente porque simplifica la configuración requerida del cliente. SSSD también proporciona funciones adicionales, por ejemplo:
@@ -84,11 +84,11 @@ Desde la perspectiva de IdM, el dominio incluye los siguientes tipos de máquina
 
 <br>Una réplica es un clon de un servidor IdM específico. El servidor y la réplica comparten la misma información interna sobre usuarios, máquinas, certificados y políticas configuradas. Estos datos se copian del servidor a la réplica en un proceso llamado réplica . Las dos instancias de Directory Server utilizadas por un servidor IdM, la instancia de Directory Server utilizada por el servidor IdM como almacén de datos y la instancia de Directory Server utilizada por Dogtag Certificate System para almacenar información del certificado, se replican en las correspondientes instancias de Directory Server del consumidor utilizadas. por la réplica de IdM. Las diferentes instancias de Directory Server se reconocen entre sí mediante acuerdos de replicación.. Se crea un acuerdo de replicación inicial entre un servidor maestro y una réplica cuando se crea la réplica; Se pueden agregar acuerdos adicionales a otros servidores o réplicas usando el <strong>ipa-replica-managecomando</strong>.
 
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm103.png?raw=true"></p>
+<p align="center"><img src="../images/idm03.png?raw=true"></p>
 
 <br>Una de las topologías más resistentes es crear una configuración de celda para los servidores / réplicas, donde hay una pequeña cantidad de servidores en una celda que tienen acuerdos de replicación entre sí (una celda estrecha), y luego cada servidor tiene una replicación. acuerdo con otro servidor fuera de la celda, acoplando débilmente esa celda a todas las demás celdas del dominio general.
 
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm104.png?raw=true"></p>
+<p align="center"><img src="../images/idm04.png?raw=true"></p>
 
 <br>Hay algunas recomendaciones sobre cómo lograr esto fácilmente:
 <br>- Tenga al menos un servidor IdM en cada oficina principal, centro de datos o localidad. Preferiblemente, tenga dos servidores IdM.
@@ -96,7 +96,7 @@ Desde la perspectiva de IdM, el dominio incluye los siguientes tipos de máquina
 <br>- En lugar de utilizar un servidor o una réplica, las oficinas pequeñas pueden utilizar SSSD para almacenar en caché las credenciales y utilizar un servidor IdM externo como backend de datos.
 
 <h3><strong>Integración con Active Directory</strong></h3>
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm105.png?raw=true"></p>
+<p align="center"><img src="../images/idm05.png?raw=true"></p>
 <br>La sincronización es el proceso de copiar datos de usuario entre Active Directory y la administración de identidades.
 La sincronización se define en un acuerdo entre un servidor IdM y un controlador de dominio de Active Directory. El acuerdo de sincronización define toda la información necesaria para identificar las entradas de usuario que se pueden sincronizar (como el subárbol para sincronizar y las clases de objetos requeridas en las entradas de usuario), así como definir cómo se manejan los atributos de la cuenta. Los acuerdos de sincronización se crean con valores predeterminados que se pueden modificar para satisfacer las necesidades de un dominio específico. Cuando dos servidores están involucrados en la sincronización, se denominan pares.
 <br>La sincronización suele ser bidireccional. La información se envía y recibe entre el dominio de IdM y el dominio de Windows en un proceso que es muy similar a cómo los servidores de IdM y las réplicas comparten información entre sí. Es posible configurar la sincronización para sincronizar solo de una manera. Esa es la sincronización unidireccional.
@@ -114,7 +114,8 @@ La sincronización se define en un acuerdo entre un servidor IdM y un controlado
 
 <h3><strong>Directory Server</strong></h3>
 <br>Red Hat Directory Server se compone de varios componentes. El núcleo del directorio en sí es el servidor que implementa el protocolo LDAP. Red Hat Directory Server tiene una interfaz gráfica de usuario del lado del cliente en la parte superior del servidor LDAP que permite a los usuarios finales buscar y cambiar entradas en el directorio. Otros clientes LDAP, tanto programas de terceros como programas personalizados escritos con Mozilla LDAP SDK y OpenLDAP SDK, se pueden usar con Red Hat Directory Server o para integrar otras aplicaciones con Red Hat Directory Server.
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm106.png?raw=true"></p>
+<p align="center"><img src="../images/idm06.png?raw=true"></p>
+
 
 
 
