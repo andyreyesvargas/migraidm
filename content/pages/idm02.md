@@ -143,7 +143,7 @@ En caso el dominio ya exista en la red o internet, el instalador nos mostrara la
 `# ipa-server-install  --allow-zone-overlap`
 
 ```
-[root@server ~]# ipa-server-install --allow-zone-overlap
+[root@server ~]# ipa-server-install  --allow-zone-overlap
 
 The log file for this installation can be found in /var/log/ipaserver-install.log
 ==============================================================================
@@ -196,7 +196,6 @@ IPA admin password:
 Password (confirm):
 
 Checking DNS domain migraciones09.gob.pe., please wait ...
-DNS zone migraciones09.gob.pe. already exists in DNS and is handled by server(s): idm.migraciones.gob.pe. Please make sure that the domain is properly delegated to this IPA server.
 Do you want to configure DNS forwarders? [yes]:
 Following DNS servers are configured in /etc/resolv.conf: 192.168.100.129
 Do you want to configure these servers as DNS forwarders? [yes]:
@@ -204,14 +203,10 @@ All detected DNS servers were added. You can enter additional addresses now:
 Enter an IP address for a DNS forwarder, or press Enter to skip:
 DNS forwarders: 192.168.100.129
 Checking DNS forwarders, please wait ...
-DNS server 192.168.100.129 does not support DNSSEC: answer to query '. SOA' is missing DNSSEC signatures (no RRSIG data)
-Please fix forwarder configuration to enable DNSSEC support.
-
-DNS server 192.168.100.129: answer to query '. SOA' is missing DNSSEC signatures (no RRSIG data)
-Please fix forwarder configuration to enable DNSSEC support.
-WARNING: DNSSEC validation will be disabled
 Do you want to search for missing reverse zones? [yes]:
-Reverse record for IP address 192.168.109.10 already exists
+Do you want to create reverse zone for IP 192.168.109.10 [yes]:
+Please specify the reverse zone name [109.168.192.in-addr.arpa.]:
+Using reverse zone(s) 109.168.192.in-addr.arpa.
 Trust is configured but no NetBIOS domain name found, setting it now.
 Enter the NetBIOS name for the IPA domain.
 Only up to 15 uppercase ASCII letters, digits and dashes are allowed.
@@ -236,9 +231,10 @@ Chaining:     self-signed
 BIND DNS server will be configured to serve IPA domain with:
 Forwarders:       192.168.100.129
 Forward policy:   only
-Reverse zone(s):  No reverse zone
+Reverse zone(s):  109.168.192.in-addr.arpa.
 
 Continue to configure the system with these values? [no]: yes
+
 ```
 
 El sistema deberia terminar de instalar
