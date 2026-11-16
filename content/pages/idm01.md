@@ -119,4 +119,4 @@ La sincronización se define en un acuerdo entre un servidor IdM y un controlado
 
 
 
-<p><br><a href="idm">volver</a></p>
+<p><br><a href="idm.md">volver</a></p>
