@@ -343,17 +343,50 @@ Reverse zone(s):  109.168.192.in-addr.arpa.
 Continue to configure the system with these values? [no]: yes
 ```
 
+La instalación deberia culminar con exito
+```
+Setup complete
 
+Next steps:
+        1. You must make sure these network ports are open:
+                TCP Ports:
+                  * 80, 443: HTTP/HTTPS
+                  * 389, 636: LDAP/LDAPS
+                  * 88, 464: kerberos
+                  * 53: bind
+                UDP Ports:
+                  * 88, 464: kerberos
+                  * 53: bind
 
-De ser necesario, volver a configurar las reglas de firewall
-<br>`# firewall-cmd --permanent --add-service=http`
-<br>`# firewall-cmd --permanent --add-service=https`
-<br>`# firewall-cmd --permanent --add-service=ldap`
-<br>`# firewall-cmd --permanent --add-service=ldaps`
-<br>`# firewall-cmd --permanent --add-service=kerberos`
-<br>`# firewall-cmd --permanent --add-service=dns`
-<br>`# firewall-cmd --permanent --add-service=ntp`
-<br>`# firewall-cmd --reload`
+        2. You can now obtain a kerberos ticket using the command: 'kinit admin'
+           This ticket will allow you to use the IPA tools (e.g., ipa user-add)
+           and the web user interface.
+
+Be sure to back up the CA certificates stored in /root/cacert.p12
+These files are required to create replicas. The password for these
+files is the Directory Manager password
+The ipa-server-install command was successful
+```
+
+Tambien se debe abrir los puertos del firewall
+```
+[root@server ~]# firewall-cmd --permanent --add-service=http
+success
+[root@server ~]# firewall-cmd --permanent --add-service=https
+success
+[root@server ~]# firewall-cmd --permanent --add-service=ldap
+success
+[root@server ~]# firewall-cmd --permanent --add-service=ldaps
+success
+[root@server ~]# firewall-cmd --permanent --add-service=kerberos
+success
+[root@server ~]# firewall-cmd --permanent --add-service=dns
+success
+[root@server ~]# firewall-cmd --permanent --add-service=ntp
+success
+[root@server ~]# firewall-cmd --reload
+success
+```
 
 Una vez instalado el sistema debería realizar respaldos de la infraestructura, podría apoyarse en soluciones de respaldo sobre plataforma de virtualización o en los comandos `ipa-backup` e `ipa-restore` y realizar actualizaciones con el comando `ipa-server-upgrade`
 
@@ -361,7 +394,7 @@ Una vez instalado el sistema debería realizar respaldos de la infraestructura, 
 <br>- Instale su propio servidor IDM en su dominio asignado de forma interactiva
 <br>- Desinstale el servicio IDM para recuperar el sistema operativo
 <br>- Reinicie el sistema
-<br>- Instale el servidor IDM de forma automatizada con integración con el servidor DNS del salon(192.168.100.200) y los usuarios tenga el ID desde 70000 hasta 80000
+<br>- Instale el servidor IDM de forma automatizada con integración con el servidor DNS del salon(192.168.100.129) y los usuarios tenga el ID desde 70000 hasta 80000
 
 
 
