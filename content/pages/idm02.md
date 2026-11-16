@@ -287,7 +287,7 @@ Posterior la desinstalación, se recomienda reiniciar el sistema para depurar cu
 Conociendo el proceso de instalación, podemos simplificarlo con parámetros avanzados desde la misma instalación, por ejemplo instalemos el sistema con la siguiente linea de comandos analizando las mejoras propuestas por el instructor
 
 ```
-[root@server ~]# ipa-server-install --realm=MIGRACIONES09.GOB.PE --netbios-name=MIGRACIONES09 --domain=migraciones09.gob.pe --ds-password=Passw0rd$ --admin-password=Passw0rd$ --hostname=server.migraciones09.gob.pe --ip-address=192.168.109.10 --setup-dns --forwarder 192.168.109.1 --reverse-zone=109.168.192.in-addr.arpa --idstart=60000 --idmax=10000000 --allow-zone-overlap --no-ntp
+[root@server ~]# ipa-server-install --realm=MIGRACIONES09.GOB.PE --netbios-name=MIGRACIONES09 --domain=migraciones09.gob.pe --ds-password=Passw0rd$ --admin-password=Passw0rd$ --hostname=server.migraciones09.gob.pe --ip-address=192.168.109.10 --setup-dns --forwarder 192.168.100.129 --reverse-zone=109.168.192.in-addr.arpa --idstart=60000 --idmax=10000000 --allow-zone-overlap --no-ntp
 
 The log file for this installation can be found in /var/log/ipaserver-install.log
 ==============================================================================
@@ -332,7 +332,7 @@ Subject base: O=MIGRACIONES09.GOB.PE
 Chaining:     self-signed
 
 BIND DNS server will be configured to serve IPA domain with:
-Forwarders:       192.168.109.1
+Forwarders:       192.168.100.129
 Forward policy:   only
 Reverse zone(s):  109.168.192.in-addr.arpa.
 
