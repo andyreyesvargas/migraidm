@@ -394,4 +394,4 @@ Una vez instalado el sistema debería realizar respaldos de la infraestructura, 
 
 
 
-<p><br><a href="idm">volver</a></p>
+<p><br><a href="idm.md">volver</a></p>
