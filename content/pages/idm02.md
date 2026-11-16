@@ -24,47 +24,35 @@
 </p>
 
 <strong>Requisitos:</strong>
-<br><strong>- Sistema Operativo RHEL 8.2</strong>
-<br><strong>- Alumno 01:</strong><br>  - idm: 192.168.100.11 client: 192.168.100.21 dominio: domain01.net
-<br><strong>- Alumno 02:</strong><br>  - idm: 192.168.100.12 client: 192.168.100.22 dominio: domain02.net
-<br><strong>- Alumno 03:</strong><br>  - idm: 192.168.100.13 client: 192.168.100.23 dominio: domain03.net
-<br><strong>- Alumno 04:</strong><br>  - idm: 192.168.100.14 client: 192.168.100.24 dominio: domain04.net
-<br><strong>- Alumno 05:</strong><br>  - idm: 192.168.100.15 client: 192.168.100.25 dominio: domain05.net
-<br><strong>- Alumno 06:</strong><br>  - idm: 192.168.100.16 client: 192.168.100.26 dominio: domain06.net
-<br><strong>- Alumno 07:</strong><br>  - idm: 192.168.100.17 client: 192.168.100.27 dominio: domain07.net
-</p>
+<br><strong>- Sistema Operativo RHEL 9.4</strong>
 
 <strong>## Instalación del servidor Red Hat IDM</strong>
 
-El proceso de instalación inicia con la habilitación de los repositorios de sistema operativo `rhel-8-for-x86_64-baseos-rpms` y `rhel-8-for-x86_64-appstream-rpms` con los comandos:
+El proceso de instalación inicia con la habilitación de los repositorios de sistema operativo `rhel-9-for-x86_64-baseos-rpms` y `rhel-9-for-x86_64-appstream-rpms` con los comandos:
 
 ```
 # subscription-manager register
-# subscription-manager list --available
-# subscription-manager attach --pool=**************
-# subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms
-# subscription-manager repos --enable=rhel-8-for-x86_64-appstream-rpms
+# subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
+# subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
 ```
 
 
-En caso de no contar con una suscripción activa, se puede utilizar un repositorio creado a partir del ISO de RHEL 8.2 editando el archivo de configuración de repositorio en la ruta `/etc/yum.repos.d/rhel.repo` con el siguiente contenido:
-```text
-[BaseOS]
-name=BaseOS
-enabled=1
-baseurl=ftp://192.168.100.203/rhel82/BaseOS
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-###
-[AppStream]
-name=AppStream
-enabled=1
-baseurl=ftp://192.168.100.203/rhel82/AppStream
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-###
+En caso de no contar con una suscripción activa, se puede utilizar un repositorio creado a partir del ISO de RHEL 9.4 editando el archivo de configuración de repositorio en la ruta `/etc/yum.repos.d/rhel.repo` con el siguiente contenido:
 ```
-
+[root@server ~]# vi /etc/yum.repos.d/rhel.repo
+[baseos]
+name=baseos
+baseurl=ftp://ftp.migraciones.gob.pe/rhel94/BaseOS
+enabled=1
+gpgheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[appstream]
+name=appstream
+baseurl=ftp://ftp.migraciones.gob.pe/rhel94/AppStream
+enabled=1
+gpgheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+```
 
 El comando `dnf repolist` nos permitirá validar la disponibilidad de los repositorios ya sean por suscripción o por ISO
 
