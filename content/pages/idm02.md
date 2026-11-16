@@ -281,15 +281,69 @@ Are you sure you want to continue with the uninstall procedure? [no]: yes
 ```
 
 Posterior la desinstalación, se recomienda reiniciar el sistema para depurar cualquier información en memoria del sistema anterior.
-
-`# init 6`
+```
+[root@server ~]# reboot
+```
 
 
 <strong>## Instalación del servidor Red Hat IDM avanzada</strong>
 
 Conociendo el proceso de instalación, podemos simplificarlo con parámetros avanzados desde la misma instalación, por ejemplo instalemos el sistema con la siguiente linea de comandos analizando las mejoras propuestas por el instructor
 
-`# ipa-server-install --realm=DOMAIN08.NET --domain=domain08.net --ds-password=Passw0rd$ --admin-password=Passw0rd$ --hostname=idm.domain08.net --ip-address=192.168.100.18 --setup-dns --forwarder 192.168.100.200 --reverse-zone=100.168.192.in-addr.arpa --idstart=60000 --idmax=10000000 --allow-zone-overlap --no-ntp` 
+```
+[root@server ~]# ipa-server-install --realm=MIGRACIONES09.GOB.PE --netbios-name=MIGRACIONES09 --domain=migraciones09.gob.pe --ds-password=Passw0rd$ --admin-password=Passw0rd$ --hostname=server.migraciones09.gob.pe --ip-address=192.168.109.10 --setup-dns --forwarder 192.168.109.1 --reverse-zone=109.168.192.in-addr.arpa --idstart=60000 --idmax=10000000 --allow-zone-overlap --no-ntp
+
+The log file for this installation can be found in /var/log/ipaserver-install.log
+==============================================================================
+This program will set up the IPA Server.
+Version 4.11.0
+
+This includes:
+  * Configure a stand-alone CA (dogtag) for certificate management
+  * Create and configure an instance of Directory Server
+  * Create and configure a Kerberos Key Distribution Center (KDC)
+  * Configure Apache (httpd)
+  * Configure DNS (bind)
+  * Configure SID generation
+  * Configure the KDC to enable PKINIT
+
+Excluded by options:
+  * Configure the NTP client (chronyd)
+
+To accept the default shown in brackets, press the Enter key.
+
+Warning: skipping DNS resolution of host server.migraciones09.gob.pe
+Checking DNS domain migraciones09.gob.pe., please wait ...
+Checking DNS domain 109.168.192.in-addr.arpa, please wait ...
+Checking DNS forwarders, please wait ...
+DNS server 192.168.109.1 does not support DNSSEC: answer to query '. SOA' is missing DNSSEC signatures (no RRSIG data)
+Please fix forwarder configuration to enable DNSSEC support.
+
+DNS server 192.168.109.1: answer to query '. SOA' is missing DNSSEC signatures (no RRSIG data)
+Please fix forwarder configuration to enable DNSSEC support.
+WARNING: DNSSEC validation will be disabled
+Using reverse zone(s) 109.168.192.in-addr.arpa.
+
+The IPA Master Server will be configured with:
+Hostname:       server.migraciones09.gob.pe
+IP address(es): 192.168.109.10
+Domain name:    migraciones09.gob.pe
+Realm name:     MIGRACIONES09.GOB.PE
+
+The CA will be configured with:
+Subject DN:   CN=Certificate Authority,O=MIGRACIONES09.GOB.PE
+Subject base: O=MIGRACIONES09.GOB.PE
+Chaining:     self-signed
+
+BIND DNS server will be configured to serve IPA domain with:
+Forwarders:       192.168.109.1
+Forward policy:   only
+Reverse zone(s):  109.168.192.in-addr.arpa.
+
+Continue to configure the system with these values? [no]: yes
+```
+
+
 
 De ser necesario, volver a configurar las reglas de firewall
 <br>`# firewall-cmd --permanent --add-service=http`
