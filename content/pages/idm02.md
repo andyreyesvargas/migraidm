@@ -56,23 +56,34 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 El comando `dnf repolist` nos permitirá validar la disponibilidad de los repositorios ya sean por suscripción o por ISO
 
-`# dnf repolist`
+```
+[root@server ~]# yum repolist
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use "rhc" or "subscription-manager" to register.
+
+repo id                                           repo name
+appstream                                         appstream
+baseos                                            baseos
+```
 
 Como buena practica, el sistema IDM debe contar con una hora sincronizada, para ello habilitar la sincronización con el servidor ntp del salón 192.168.100.200
 
 ```
-# yum install chrony -y
-# vi /etc/chrony.conf
-server 192.168.100.200 iburst
-# systemctl restart chronyd
-# systemctl enable chronyd
-# chronyc sources
+[root@server ~]# yum install -y chrony
+[root@server ~]# vi /etc/chrony.conf
+pool ntp.migraciones.gob.pe iburst
+[root@server ~]# systemctl enable chronyd --now
+[root@server ~]# chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? ntp.migraciones.gob.pe        0   6     0     -     +0ns[   +0ns] +/-    0ns
 ```
-
 En caso de realizar la conexión remota por una red inestable o que tiende a desconexiones, podemos proteger la conexión con el aplicativo screen
 
 ```
-# yum install -y ftp://ftp.opennova.pe/instaladores/screen-4.6.2-12.el8.x86_64.rpm
+[root@server ~]# yum install -y ftp://ftp.migraciones.gob.pe/screen-4.8.0-6.el9.x86_64.rpm
 ```
 
 Crear conexión
