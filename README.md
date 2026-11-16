@@ -9,7 +9,7 @@
 
 <h3><a href="content/pages/idm.md">Sistema de Gestión de Identidades</a></h3>
 
-| Nro | Alumno | Red | IP Satellite | IP Client |
+| Nro | Alumno | Red | IP Server | IP Client |
 | --- | --- | --- | --- | --- |
 | 01 | Rodriguez Palacios, Carlos Alberto | 192.168.101.0/24 | 192.168.101.10 | 192.168.101.11 |
 | 02 | Calero Carpio, Gladys Lizeth | 192.168.102.0/24 | 192.168.102.10 | 192.168.102.11 |
