@@ -1,4 +1,4 @@
-<p align="center"><img src="/content/images/home.png" alt="IDM logo"></p>
+<p align="center"><img src="/content/images/idm.png" alt="IDM logo"></p>
 
 <h1 align="center">Red Hat IDM</h1>
 <p align="center">
