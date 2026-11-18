@@ -161,7 +161,7 @@ This includes:
 
 To accept the default shown in brackets, press the Enter key.
 
-Do you want to configure integrated DNS (BIND)? [no]: yes
+Do you want to configure integrated DNS (BIND)? [no]:
 
 Enter the fully qualified domain name of the computer
 on which you're setting up server software. Using the form
@@ -171,7 +171,6 @@ Example: master.example.com
 
 Server host name [server.migraciones09.gob.pe]:
 
-Warning: skipping DNS resolution of host server.migraciones09.gob.pe
 The domain name has been determined based on the host name.
 
 Please confirm the domain name [migraciones09.gob.pe]:
@@ -186,27 +185,15 @@ to the Directory for system management tasks and will be added to the
 instance of directory server created for IPA.
 The password must be at least 8 characters long.
 
-Directory Manager password:
-Password (confirm):
+Directory Manager password: Passw0rd$
+Password (confirm): Passw0rd$
 
 The IPA server requires an administrative user, named 'admin'.
 This user is a regular system account used for IPA server administration.
 
-IPA admin password:
-Password (confirm):
+IPA admin password: Passw0rd$
+Password (confirm): Passw0rd$
 
-Checking DNS domain migraciones09.gob.pe., please wait ...
-Do you want to configure DNS forwarders? [yes]:
-Following DNS servers are configured in /etc/resolv.conf: 192.168.100.129
-Do you want to configure these servers as DNS forwarders? [yes]:
-All detected DNS servers were added. You can enter additional addresses now:
-Enter an IP address for a DNS forwarder, or press Enter to skip:
-DNS forwarders: 192.168.100.129
-Checking DNS forwarders, please wait ...
-Do you want to search for missing reverse zones? [yes]:
-Do you want to create reverse zone for IP 192.168.109.10 [yes]:
-Please specify the reverse zone name [109.168.192.in-addr.arpa.]:
-Using reverse zone(s) 109.168.192.in-addr.arpa.
 Trust is configured but no NetBIOS domain name found, setting it now.
 Enter the NetBIOS name for the IPA domain.
 Only up to 15 uppercase ASCII letters, digits and dashes are allowed.
@@ -228,12 +215,8 @@ Subject DN:   CN=Certificate Authority,O=MIGRACIONES09.GOB.PE
 Subject base: O=MIGRACIONES09.GOB.PE
 Chaining:     self-signed
 
-BIND DNS server will be configured to serve IPA domain with:
-Forwarders:       192.168.100.129
-Forward policy:   only
-Reverse zone(s):  109.168.192.in-addr.arpa.
-
 Continue to configure the system with these values? [no]: yes
+
 
 ```
 
