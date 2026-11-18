@@ -266,11 +266,11 @@ El proceso de creación de un grupo se realiza con los siguientes comandos
 
 Para agregar uno o mas usuarios al grupo usamos
 
-`# ipa group-add-member redes --users=luis.fernandez --users=pedro.benitez`
+`# ipa group-add-member redes --users=andy.reyes --users=jaime.zamudio`
 
 Para remover uno o mas usuarios al grupo usamos
 
-`# ipa group-remove-member redes --users=luis.fernandez --users=pedro.benitez`
+`# ipa group-remove-member redes --users=andy.reyes --users=jaime.zamudio`
 
 
 
