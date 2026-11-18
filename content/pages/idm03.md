@@ -113,6 +113,29 @@ ipa-dnskeysyncd Service: RUNNING
 ipa: INFO: The ipactl command was successful
 ```
 
+Editar el archivo de configuracion
+```
+[root@server ~]# /etc/named/ipa-options-ext.conf
+dnssec-validation no;
+```
+
+Reiniciar el servicio de ipactl
+```
+[root@server ~]# ipactl restart
+[root@server ~]# ipactl status
+Directory Service: RUNNING
+krb5kdc Service: RUNNING
+kadmin Service: RUNNING
+named Service: RUNNING
+httpd Service: RUNNING
+ipa-custodia Service: RUNNING
+pki-tomcatd Service: RUNNING
+ipa-otpd Service: RUNNING
+ipa-dnskeysyncd Service: RUNNING
+ipa: INFO: The ipactl command was successful
+```
+
+
 
 <h3><br><strong>## Creación de un usuario vía GUI</strong></h3>
 
