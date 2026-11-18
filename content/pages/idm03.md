@@ -232,7 +232,7 @@ El sistema generara un QR que escanearemos con el app FreeOTP
 En su app vera un código que se regenerara cada cierta cantidad de segundos, usara ese código para complementar su contraseña actual
 <p align="center"><img src="../images/idm17.png?raw=true"></p>
 
-Desloguese del sistema y vuelva a ingresar usando ahora la contraseña doble con la forma de <CONTRASEÑA LOCAL><TOKEN>
+Desloguese del sistema y vuelva a ingresar usando ahora la contraseña doble con la forma de <CONTRASEÑA LOCAL><TOKEN> + <NUMEROS DEL OTP>
 <p align="center"><img src="../images/idm18.png?raw=true"></p>
 
 Puede validar su Ficha OTP
