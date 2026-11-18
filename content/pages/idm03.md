@@ -140,18 +140,18 @@ ipa: INFO: The ipactl command was successful
 <h3><br><strong>## Creación de un usuario vía GUI</strong></h3>
 
 El proceso de creación de un usuario inicia con el logueo a la pagina de gestión `https://server.migraciones09.gob.pe`
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm401.png?raw=true"></p>
+<p align="center"><img src="../images/idm07.png?raw=true"></p>
 
 
 En la sección de USUARIOS seleccionamos el botón AGREGAR para crear un nuevo usuario
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm402.png?raw=true"></p>
+<p align="center"><img src="../images/idm08.png?raw=true"></p>
 
 
 Ingresamos los datos del nuevo usuario
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm403.png?raw=true"></p>
+<p align="center"><img src="../images/idm09.png?raw=true"></p>
 
 Verificamos que el usuario este creado
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm404.png?raw=true"></p>
+<p align="center"><img src="../images/idm10.png?raw=true"></p>
 
 Para sistemas compatibles con PAM, puede agregar la siguiente linea a los archivos `/etc/pam.d/system-auth` y `/etc/pam.d/password-auth`
 
@@ -212,10 +212,10 @@ A fin de mejorar la seguridad, podemos activar el doble factor de autenticación
 <br>Cada usuario deberá crear su propio token
 
 Con el usuario admin, seleccionamos el usuario andy.reyes
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a001.png?raw=true"></p>
+<p align="center"><img src="../images/idm07.png?raw=true"></p>
 
 Activar la casilla de doble factor de autenticación y guardamos los cambios
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a002.png?raw=true"></p>
+<p align="center"><img src="../images/idm08.png?raw=true"></p>
 
 Iniciar sesión por GUI  con el usuario andy.reyes con la contraseña tradicional
 <p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a003.png?raw=true"></p>
