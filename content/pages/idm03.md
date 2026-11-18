@@ -241,22 +241,22 @@ Puede validar su Ficha OTP
 <h3><br><strong>## Creación de un grupo de usuarios vía GUI</strong></h3>
 
 El proceso de creación de un grupo y asignación de usuarios en ese grupo inicia con la creación de un usuario ingresando a la sección IDENTIDAD > GRUPOS y el botón de AGREGAR
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm405.png?raw=true"></p>
+<p align="center"><img src="../images/idm20.png?raw=true"></p>
 
 Ingresamos un nombre para el grupo y una descripcion
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm406.png?raw=true"></p>
+<p align="center"><img src="../images/idm21.png?raw=true"></p>
 
 Verificamos la creación del grupo y hacemos click sobre el nombre para editar sus integrantes
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm407.png?raw=true"></p>
+<p align="center"><img src="../images/idm22.png?raw=true"></p>
 
 Con el botón AGREGAR modificamos la lista de integrantes
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm408.png?raw=true"></p>
+<p align="center"><img src="../images/idm23.png?raw=true"></p>
 
 En la lista de usuarios, desplazamos algunos usuarios a la zona derecha para integrarlo al grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm409.png?raw=true"></p>
+<p align="center"><img src="../images/idm24.png?raw=true"></p>
 
 Finalmente aceptamos los cambios
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm410.png?raw=true"></p>
+<p align="center"><img src="../images/idm25.png?raw=true"></p>
 
 <h3><br><strong>## Creación de un grupo de usuarios vía CLI</strong></h3>
 
