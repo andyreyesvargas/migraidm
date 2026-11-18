@@ -212,32 +212,31 @@ A fin de mejorar la seguridad, podemos activar el doble factor de autenticación
 <br>Cada usuario deberá crear su propio token
 
 Con el usuario admin, seleccionamos el usuario andy.reyes
-<p align="center"><img src="../images/idm07.png?raw=true"></p>
+<p align="center"><img src="../images/idm11.png?raw=true"></p>
 
 Activar la casilla de doble factor de autenticación y guardamos los cambios
-<p align="center"><img src="../images/idm08.png?raw=true"></p>
+<p align="center"><img src="../images/idm12.png?raw=true"></p>
 
 Iniciar sesión por GUI  con el usuario andy.reyes con la contraseña tradicional
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a003.png?raw=true"></p>
+<p align="center"><img src="../images/idm13.png?raw=true"></p>
 
 En la sección de FICHAS OTP, agregar una nueva
-<<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a004.png?raw=true"></p>>
+<p align="center"><img src="../images/idm14.png?raw=true"></p>
 
 Creamos una nueva ficha basada en tiempo OTP
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a005.png?raw=true"></p>
+<p align="center"><img src="../images/idm15.png?raw=true"></p>
 
 El sistema generara un QR que escanearemos con el app FreeOTP
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a006.png?raw=true"></p>
+<p align="center"><img src="../images/idm16.png?raw=true"></p>
 
 En su app vera un código que se regenerara cada cierta cantidad de segundos, usara ese código para complementar su contraseña actual
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a007.png?raw=true"></p>
+<p align="center"><img src="../images/idm17.png?raw=true"></p>
 
 Desloguese del sistema y vuelva a ingresar usando ahora la contraseña doble con la forma de <CONTRASEÑA LOCAL><TOKEN>
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a008.png?raw=true"></p>
+<p align="center"><img src="../images/idm18.png?raw=true"></p>
 
 Puede validar su Ficha OTP
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a009.png?raw=true"></p>
-
+<p align="center"><img src="../images/idm19.png?raw=true"></p>
 
 <h3><br><strong>## Creación de un grupo de usuarios vía GUI</strong></h3>
 
