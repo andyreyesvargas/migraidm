@@ -115,7 +115,7 @@ ipa: INFO: The ipactl command was successful
 
 Editar el archivo de configuracion
 ```
-[root@server ~]# /etc/named/ipa-options-ext.conf
+[root@server ~]# vi /etc/named/ipa-options-ext.conf
 dnssec-validation no;
 ```
 
