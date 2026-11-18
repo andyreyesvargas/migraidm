@@ -68,7 +68,7 @@ appstream                                         appstream
 baseos                                            baseos
 ```
 
-Como buena practica, el sistema IDM debe contar con una hora sincronizada, para ello habilitar la sincronización con el servidor ntp del salón 192.168.100.200
+Como buena practica, el sistema IDM debe contar con una hora sincronizada, para ello habilitar la sincronización con el servidor ntp del salón 192.168.100.129
 
 ```
 [root@server ~]# yum install -y chrony
