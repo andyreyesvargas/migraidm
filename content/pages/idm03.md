@@ -31,6 +31,7 @@
 
 <h3><br><strong>## Actualización de plataforma IDM</strong></h3>
 En el caso la plataforma IDM tenga servicios caidos a pesar de que se reinicio el servicio, existe la posibilidad de BUGs que deben ser corregidos por actualizaciones, para ellos verificamos la plataforma
+
 ```
 [root@server ~]# ipactl status
 Directory Service: RUNNING
