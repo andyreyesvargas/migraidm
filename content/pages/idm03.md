@@ -185,9 +185,9 @@ Otra opción de creación es la contraseña aleatoria con el comando
 Podemos borrar el usuario anterior con el comando
 `# ipa user-del --no-preserve jaime.zamudio`
 
-Notamos que al crear el usuario de nuevo, este no recupera su UID original, este UID  es diferente, podemos hacer algunas ediciones al usuario en el caso que el UID y GUID original sea 6002
+Notamos que al crear el usuario de nuevo, este no recupera su UID original, este UID  es diferente, podemos hacer algunas ediciones al usuario en el caso que el UID y GUID original sea 70002
 
-`# ipa user-mod jaime.zamudio --shel=/bin/bash --uid=60002 --gid=60002`
+`# ipa user-mod jaime.zamudio --shel=/bin/bash --uid=60002 --gid=700002`
 
 En el servidor IDM podemos loguearnos con el usuario jaime.zamudio
 ```
