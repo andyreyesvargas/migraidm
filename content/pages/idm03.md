@@ -139,7 +139,7 @@ ipa: INFO: The ipactl command was successful
 
 <h3><br><strong>## Creación de un usuario vía GUI</strong></h3>
 
-El proceso de creación de un usuario inicia con el logueo a la pagina de gestión `https://idm.domain01.net`
+El proceso de creación de un usuario inicia con el logueo a la pagina de gestión `https://server.migraciones09.gob.pe`
 <p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm401.png?raw=true"></p>
 
 
@@ -164,7 +164,7 @@ session   required      pam_mkhomedir.so skel=/etc/skel umask=0002
 
 Desde el terminal Linux, podemos crear los usuarios del IDM, como primero paso debemos autenticarnos como administrador con el comando
 
-`# kinit admin@DOMAIN01.NET`
+`# kinit admin@MIGRACIONES09.GOB.PE`
 
 Luego podemos crear un usuario con el domando
 
