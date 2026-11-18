@@ -28,6 +28,90 @@
 <strong>Requisitos:</strong>
 <br><strong>- Sistema IDM instalado</strong>
 
+
+<h3><br><strong>## Actualización de plataforma IDM</strong></h3>
+En el caso la plataforma IDM tenga servicios caidos a pesar de que se reinicio el servicio, existe la posibilidad de BUGs que deben ser corregidos por actualizaciones, para ellos verificamos la plataforma
+```
+[root@server ~]# ipactl status
+Directory Service: RUNNING
+krb5kdc Service: RUNNING
+kadmin Service: RUNNING
+named Service: STOPPED
+httpd Service: RUNNING
+ipa-custodia Service: RUNNING
+pki-tomcatd Service: RUNNING
+ipa-otpd Service: RUNNING
+ipa-dnskeysyncd Service: RUNNING
+1 service(s) are not running
+```
+
+Como todo servidor IDM nuevo, maneja como servicio DNS su propia plataforma, si el servicio named(DNS) esta caído, entonces el server lo resolverá nombres hasta solucionar el problema, el primer paso es mapear repositorios de actualizaciones para instalar las correcciones
+```
+[root@server ~]# echo "192.168.100.128 ftp.migraciones.gob.pe" >> /etc/hosts
+[root@server ~]# vi /etc/yum.repos.d/updates.repo
+[baseos_updates]
+name=baseos_updates
+baseurl=ftp://ftp.migraciones.gob.pe/rhel98/BaseOS
+enabled=1
+gpgheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[appstream_updates]
+name=appstream_updates
+baseurl=ftp://ftp.migraciones.gob.pe/rhel98/AppStream
+enabled=1
+gpgheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+```
+
+Ahora se puede actualizar los RPMs de IDM, durante la actualización del rpm ipa-server-4.13.1-3.el9_8.2.x86_64 podria tardar mas de lo habitual porque valida el servicio con errores
+```
+[root@server ~]# yum update
+Complete!
+```
+
+Se actualiza la configuración
+```
+[root@server ~]# ipa-server-upgrade
+Upgrading IPA:. Estimated time: 1 minute 30 seconds
+  [1/11]: stopping directory server
+  [2/11]: saving configuration
+  [3/11]: disabling listeners
+  [4/11]: enabling DS global lock
+  [5/11]: disabling Schema Compat
+  [6/11]: starting directory server
+  [7/11]: updating schema
+  [8/11]: upgrading server
+  [9/11]: stopping directory server
+  [10/11]: restoring configuration
+  [11/11]: starting directory server
+Done.
+Update complete
+Certificate is OK; nothing to do
+The IPA services were upgraded
+The ipa-server-upgrade command was successful
+```
+
+Se reinicia el sistema
+```
+[root@server ~]# reboot
+```
+
+Se valida los servicios de IDM
+```
+[root@server ~]# ipactl status
+Directory Service: RUNNING
+krb5kdc Service: RUNNING
+kadmin Service: RUNNING
+named Service: RUNNING
+httpd Service: RUNNING
+ipa-custodia Service: RUNNING
+pki-tomcatd Service: RUNNING
+ipa-otpd Service: RUNNING
+ipa-dnskeysyncd Service: RUNNING
+ipa: INFO: The ipactl command was successful
+```
+
+
 <h3><br><strong>## Creación de un usuario vía GUI</strong></h3>
 
 El proceso de creación de un usuario inicia con el logueo a la pagina de gestión `https://idm.domain01.net`
