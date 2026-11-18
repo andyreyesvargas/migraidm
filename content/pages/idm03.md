@@ -187,7 +187,7 @@ Podemos borrar el usuario anterior con el comando
 
 Notamos que al crear el usuario de nuevo, este no recupera su UID original, este UID  es diferente, podemos hacer algunas ediciones al usuario en el caso que el UID y GUID original sea 70002
 
-`# ipa user-mod jaime.zamudio --shel=/bin/bash --uid=60002 --gid=700002`
+`# ipa user-mod jaime.zamudio --shel=/bin/bash --uid=70002 --gid=70002`
 
 En el servidor IDM podemos loguearnos con el usuario jaime.zamudio
 ```
