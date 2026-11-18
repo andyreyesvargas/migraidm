@@ -299,7 +299,7 @@ Para remover uno o mas usuarios al grupo usamos
 <br>Rosa.Acosta
 <br>
 
-<br><strong>Opcional</strong>
+<br><strong>2FA</strong>
 <br>Al primer usuario creado (usuario personal), habilite el doble factor de autenticación
 
 <strong>Tips de Linux:<strong> puede utilizar la siguiente estructura de Linux como apoyo
@@ -323,13 +323,6 @@ done
 Tips de Linux: Apoyese en la directirva GREP para filtrar usuarios, `grep  '^[A-L]'`
 
 
-
-
-<h3><br><strong>## Gestión por Rest APIs</strong></h3>
-
-El instructor demostrara la creación de un usuario apoyándose en los REST APIs disponibles en la plataforma con el material disponible ejecutando el comando
-
-`# git clone https://github.com/workshopopennova/examples.git`
 
 
 <p><br><a href="idm.md">volver</a></p>
