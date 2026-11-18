@@ -33,6 +33,7 @@
 En el caso la plataforma IDM tenga servicios caidos a pesar de que se reinicio el servicio, existe la posibilidad de BUGs que deben ser corregidos por actualizaciones, para ellos verificamos la plataforma
 
 ```
+[root@server ~]# ipactl start
 [root@server ~]# ipactl status
 Directory Service: RUNNING
 krb5kdc Service: RUNNING
