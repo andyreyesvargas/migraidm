@@ -83,10 +83,10 @@ Ingresamos los datos del registro MX
 Para validar la resolución del registro de correo usamos
 <br>`# nslookup`
 <br>`# > set q=mx`
-<br>`# > domain01.net`
+<br>`# > migraciones09.gob.pe`
 
 También podemos usar
-<br>`# dig domain01.net MX`
+<br>`# dig migraciones09.gob.pe MX`
 
 En un segundo terminal ejecutamos
 
