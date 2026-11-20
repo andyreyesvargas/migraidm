@@ -132,8 +132,8 @@ La regla ya fue creada, sin embargo tambien existe la necesidad de aumentar los 
 <br>`# ipa sudocmdgroup-show gestionarchivos`
 
 <h3><br><strong>Laboratorio</strong></h3>
-<br>Use el comando visudo y elimine las 2 lineas que creo en el primer laboratorio y replique la regla de acceso creada por el instructor
-<br>Ejecute los siguientes comandos para obtener un reporte de comandos, usando el reporte cree una regla sudo que permita la ejecución de todo el grupo de comandos
+<br>Cree el grupo de comandos sudo que incluya los comandos chwon, chgr, more, less y aplique una regla sudo que acepte esos comandos a su usuario personal del IDM
+<br>Cree el grupo de comandos zip_commands que incluya los comandos descritos en el siguiente procedimiento, luego agregue este grupo a la regla sudo del ejercicio anterior
 
 ```
 # yum install -y mlocate zip
@@ -143,4 +143,4 @@ La regla ya fue creada, sin embargo tambien existe la necesidad de aumentar los 
 
 
 
-<p><br><a href="idm">volver</a></p>
+<p><br><a href="idm.md">volver</a></p>
