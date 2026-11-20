@@ -174,12 +174,15 @@ Podemos ejecutar el mismo procedimiento con la linea de comandos
 Cree un forwarder de DNS al servidor 4.2.2.1
 
 <h3><strong>Laboratorio 02</strong></h3>
-<br>Con lo aprendido cree un registro DNS mail que redireccione a la IP 192.168.100.203
+<br>Con lo aprendido cree un registro DNS mail que redireccione a la IP 192.168.100.128
 
 <h3><strong>Laboratorio 03</strong></h3>
-<br>Cree su propio registro MX que apunte al registro mail y valide su funcionamiento
+<br>Cree su propio registro MX que apunte al registro mail y valide su funcionamiento con el servicio de correo postix
 
 <h3><strong>Laboratorio 04</strong></h3>
-<br>Usando lo aprendido cree un dominio minombre.net del rango de IPs 192.168.200.0/24, recuerde crear la zona de resolución directa y reversa ademas de registros del tipo A y PTR. Cree un registro A llamado mail el cual sera el mail exchanger de su dominio, valide el funcionamiento a nivel de DNS.
+<br>Usando lo aprendido cree un dominio migracioneslabs.net con el direccionamientos 172.16.X.0/24 donde X es su numero alumno y cree al menos 3 registros, para www, ftp, mesadeayuda con resolución inersa a su criterio
 
-<p><br><a href="idm">volver</a></p>
+<h3><strong>Laboratorio 05</strong></h3>
+<br>Usando lo aprendido cree un dominio llamado migracioneswin.gob.pe y descargue el archivo ftp://ftp.migraciones.gob.pe/DNS_MIGRACIONES.csv que es un export de un dominio de active directory,y extraiga todos los registros A envíelos al dominio migracioneswin.gob.pe manteniendo las IPs originales
+
+<p><br><a href="idm.md">volver</a></p>
