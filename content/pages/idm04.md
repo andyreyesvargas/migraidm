@@ -134,40 +134,40 @@ Nov 19 23:33:44 server postfix/smtp[6334]: C90F51000841: to=<root@migraciones09.
 <h3><br><strong>## Configurar zonas DNS</strong></h3>
 
 El mismo servidor IDM puede configurar diferentes dominios, estos dominios se dividen en zonas y se recomienda ademas de crear la zona de resolución directa también la inversa, para ellos ingresamos a la sección de Servicios de Red y Zonas DNS
-<p align="center"><img src="../images/idm35.png?raw=true"></p>
+<p align="center"><img src="../images/idm38.png?raw=true"></p>
 
 Agregamos una zona nueva
-<p align="center"><img src="../images/idm36.png?raw=true"></p>
+<p align="center"><img src="../images/idm39.png?raw=true"></p>
 
-Registramos la zona directa nueva
-<p align="center"><img src="../images/idm37.png?raw=true"></p>
+Registramos los datos de la zona directa example.com
+<p align="center"><img src="../images/idm40.png?raw=true"></p>
 
 Agregamos una zona nueva
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm514.png?raw=true"></p>
+<p align="center"><img src="../images/idm39.png?raw=true"></p>
 
-Registramos la zona inversa nueva
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm515.png?raw=true"></p>
+Registramos los datos de la zona reversa 192.168.209.0/24
+<p align="center"><img src="../images/idm41.png?raw=true"></p>
 
-Ingresamos a la zona nueva
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm516.png?raw=true"></p>
+Ingresamos a la zona creada
+<p align="center"><img src="../images/idm42.png?raw=true"></p>
 
-Agregamos un nuevo registro DNS
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm517.png?raw=true"></p>
+Registramos un registro a la zona
+<p align="center"><img src="../images/idm43.png?raw=true"></p>
 
-Ingresamos los datos del registro
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm518.png?raw=true"></p>
+Ingresamos un registro tipo A
+<p align="center"><img src="../images/idm44.png?raw=true"></p>
 
 Validamos el nuevo registro
 <br>`# dig +short client.example.com`
 <br>`# nslookup client.example.com`
 
 Podemos ejecutar el mismo procedimiento con la linea de comandos
-<br>`# kinit admin@DOMAIN01.NET`
-<br>`# ipa dnszone-add opennovalabs.net`
-<br>`# ipa dnszone-add 1.16.172.in-addr.arpa.`
-<br>`# ipa dnsrecord-add opennovalabs.net client --a-rec 172.16.1.181`
-<br>`# ipa dnsrecord-add 1.16.172.in-addr.arpa. 181 --ptr-rec client.opennovalabs.net.`
-<br>`# dig +short client.opennovalabs.net`
+<br>`# kinit admin@MIGRACIONES09.GOB.PE`
+<br>`# ipa dnszone-add migracioneslabs.net`
+<br>`# ipa dnszone-add 9.16.172.in-addr.arpa.`
+<br>`# ipa dnsrecord-add migracioneslabs.net client --a-rec 172.16.1.11`
+<br>`# ipa dnsrecord-add 9.16.172.in-addr.arpa. 11 --ptr-rec client.migracioneslabs.net.`
+<br>`# dig +short client.migracioneslabs.net`
 
 
 <h3><br><strong>Laboratorio 01</strong></h3>
