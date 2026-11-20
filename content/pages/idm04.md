@@ -66,8 +66,6 @@ Este procedimiento puede realizarse tambien con la linea de comandos:
 <br>`# dig +short ftp.migraciones09.gob.pe`
 <br>`# nslookup ftp.migraciones09.gob.pe`
 
-<h3><strong>Laboratorio</strong></h3>
-<br>Con lo aprendido cree un registro DNS mail que redireccione a la IP 192.168.100.203
 
 <h3><br><strong>## Configurar registros especiales</strong></h3>
 
