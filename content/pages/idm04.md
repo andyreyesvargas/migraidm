@@ -88,7 +88,11 @@ Para validar la resolución del registro de correo usamos
 También podemos usar
 <br>`# dig migraciones09.gob.pe MX`
 
-En un segundo terminal ejecutamos
+Abrimos 2 terminales de server, en el primero instalamos postfix para envio de correos
+```
+[root@server ~]# yum install -y postfix
+```
+
 
 
 <h3><br><strong>## Configurar zonas DNS</strong></h3>
