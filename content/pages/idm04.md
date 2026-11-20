@@ -28,7 +28,7 @@
 <h3><br><strong>## Configurar forwarders</strong></h3>
 
 La resolución de DNS se realiza a través del servidor IDM pero solo dentro de nuestro dominio registrado, existen registros DNS de acceso externo publico que deben ser resueltos, en este caso se requiere enviar estas peticiones a un servidor externo, aquí es importante la configuración de forwarders, para iniciar este procedimiento nos logueamos en la plataforma
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm501.png?raw=true"></p>
+<p align="center"><img src="../images/idm26.png?raw=true"></p>
 
 Ingresamos a la sección de Servicios de Red y la configuración DNS
 <p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm502.png?raw=true"></p>
@@ -42,8 +42,7 @@ Con el botón AGREGAR, ingresamos un nuevo registro de forwarder para la resoluc
 Finalizamos la configuración con el botón GUARDAR
 <p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm505.png?raw=true"></p>
 
-<h3><br><strong>Laboratorio</strong></h3>
-Cree un forwarder de DNS al servidor 4.2.2.1
+
 
 
 <h3><br><strong>## Creación de registros DNS</strong></h3>
