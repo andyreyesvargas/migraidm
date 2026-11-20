@@ -35,10 +35,10 @@ Cambiamos al usuario nuevo y creamos algunos archivos
 <br>`# touch a b`
 
 Ahora intentamos cambiar el usuario de un archivo
-<br>`# chown named a`
+<br>`# chown root a`
 
 Ahora intentamos cambiar el grupo de un archivo
-<br>`# chgrp named b`
+<br>`# chgrp root b`
 
 En ambos casos no podremos realizar las operaciones porque los comandos `chown` y `chgrp` son de acceso privilegia solo de `root`. Para permitir el acceso al nuevo usuario con el comando `visudo` creamos un grupo de comandos `ARCHIVOS` para que el usuario nuevo pueda usarlos
 <br>`# su - root`
@@ -49,44 +49,39 @@ En ambos casos no podremos realizar las operaciones porque los comandos `chown` 
 
 Ahora volvemos a intentar el cambio de usuario y grupo
 <br>`# su - andy`
-<br>`# sudo chown named a`
-<br>`# sudo chgrp named b`
-
-<h3><br><strong>Laboratorio</strong></h3>
-Replique el ejercicio del instructor pero con un usuario propio
-<br>-
-<br>-
+<br>`# sudo chown root a`
+<br>`# sudo chgrp root b`
 
 Esto resuelve el problema de permisos en el sistema, sin embargo es un proceso que debería realizarse en cada uno de los sistemas operativos de la empresa, en este aspecto IDM permite crear una base de datos centralizada de permisos el cual se replicara en cada uno de los sistema registrados.
 El primer paso es crear los comandos SUDO en la plataforma de IDM con el inicio de sesion
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm501.png?raw=true"></p>
+<p align="center"><img src="../images/idm45.png?raw=true"></p>
 
 Ingresamos a la sección de POLITICA > SUDO > Comandos SUDO
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm519.png?raw=true"></p>
+<p align="center"><img src="../images/idm46.png?raw=true"></p>
 
 Seleccionamos el botón AGREGAR
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm520.png?raw=true"></p>
+<p align="center"><img src="../images/idm47.png?raw=true"></p>
 
 Ingresamos los datos del comando chown
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm521.png?raw=true"></p>
+<p align="center"><img src="../images/idm48.png?raw=true"></p>
 
 Ingresamos los datos del comando chgrp
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm522.png?raw=true"></p>
+<p align="center"><img src="../images/idm49.png?raw=true"></p>
 
 De esta manera registramos todos los comandos que el administrador desea delegar, sin embargo multiples roles requieren multiples permisos, por ello estos comandos de archivos los agruparemos en un GRUPO DE COMANDOS SUDO para facilitar su gestión en la seccion POLITICAS > SUDO > GRUPO
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm523.png?raw=true"></p>
+<p align="center"><img src="../images/idm50.png?raw=true"></p>
 
 Agregamos el grupo de comandos nuevo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm524.png?raw=true"></p>
+<p align="center"><img src="../images/idm51.png?raw=true"></p>
 
 Ingresamos los datos del grupo nuevo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm525.png?raw=true"></p>
+<p align="center"><img src="../images/idm52.png?raw=true"></p>
 
 Seleccionamos el grupo nuevo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm526.png?raw=true"></p>
+<p align="center"><img src="../images/idm53.png?raw=true"></p>
 
 Agregamos comandos al nuevo grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm527.png?raw=true"></p>
+<p align="center"><img src="../images/idm54.png?raw=true"></p>
 
 Seleccionamos los comandos disponibles en la izquierda y los trasladamos a la derecha
 <p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm528.png?raw=true"></p>
