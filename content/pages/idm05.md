@@ -129,7 +129,7 @@ La regla ya fue creada, sin embargo tambien existe la necesidad de aumentar los 
 <br>`# ipa sudocmd-add /usr/bin/more --desc="Comando MORE"`
 <br>`# ipa sudocmdgroup-add-member --sudocmds '/usr/bin/more' gestionarchivos`
 <br>`# ipa sudocmdgroup-add-member --sudocmds '/usr/bin/less' gestionarchivos`
-<br>`# ipa sudocmdgroup-show gestionarchivoslinux`
+<br>`# ipa sudocmdgroup-show gestionarchivos`
 
 <h3><br><strong>Laboratorio</strong></h3>
 <br>Use el comando visudo y elimine las 2 lineas que creo en el primer laboratorio y replique la regla de acceso creada por el instructor
