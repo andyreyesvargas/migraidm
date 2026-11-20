@@ -163,8 +163,8 @@ Validamos el nuevo registro
 
 Podemos ejecutar el mismo procedimiento con la linea de comandos
 <br>`# kinit admin@MIGRACIONES09.GOB.PE`
-<br>`# ipa dnszone-add migracioneslabs.net`
-<br>`# ipa dnszone-add 9.16.172.in-addr.arpa.`
+<br>`# ipa dnszone-add migracioneslabs.net --skip-overlap-check`
+<br>`# ipa dnszone-add 9.16.172.in-addr.arpa. --skip-overlap-check`
 <br>`# ipa dnsrecord-add migracioneslabs.net client --a-rec 172.16.1.11`
 <br>`# ipa dnsrecord-add 9.16.172.in-addr.arpa. 11 --ptr-rec client.migracioneslabs.net.`
 <br>`# dig +short client.migracioneslabs.net`
