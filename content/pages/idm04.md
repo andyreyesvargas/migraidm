@@ -118,7 +118,7 @@ En el primer terminal enviamos un correo de prueba
 [root@server ~]# echo "correo de prueba del alumno09" | mutt -s "correo de prueba" root@migraciones09.gob.pe
 ```
 
-En el primer log, vemos si se envio el correo
+En el segundo terminal examinamos el log, vemos si se envio el correo
 ```
 Nov 19 23:32:07 server postfix/qmgr[6143]: 480461000847: from=<>, size=2652, nrcpt=1 (queue active)
 Nov 19 23:32:07 server postfix/qmgr[6143]: 051A41000841: removed
