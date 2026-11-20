@@ -115,23 +115,20 @@ En el segundo terminal de server, abrimos el log en vivo del correo
 
 En el primer terminal enviamos un correo de prueba
 ```
-[root@server ~]# echo "correo de prueba del alumno09" | mutt -s "correo de prueba" root@migraciones08.gob.pe
+[root@server ~]# echo "correo de prueba del alumno09" | mutt -s "correo de prueba" root@migraciones09.gob.pe
 ```
 
 En el primer log, vemos si se envio el correo
 ```
-Nov 19 23:32:07 server postfix/pickup[6142]: 051A41000841: uid=0 from=<root>
-Nov 19 23:32:07 server postfix/cleanup[6332]: 051A41000841: message-id=<av/NRkP+IA8TJe7O@server.migraciones09.gob.pe>
-Nov 19 23:32:07 server postfix/qmgr[6143]: 051A41000841: from=<root@migraciones09.gob.pe>, size=453, nrcpt=1 (queue active)
-Nov 19 23:32:07 server postfix/smtp[6334]: 051A41000841: to=<root@migraciones08.gob.pe>, relay=none, delay=0.27, delays=0.03/0.02/0.22/0, dsn=5.4.4, status=bounced (Host or domain name not found. Name service error for name=migraciones08.gob.pe type=AAAA: Host not found)
-Nov 19 23:32:07 server postfix/cleanup[6332]: 480461000847: message-id=<20261120043207.480461000847@server.migraciones09.gob.pe>
-Nov 19 23:32:07 server postfix/bounce[6335]: 051A41000841: sender non-delivery notification: 480461000847
 Nov 19 23:32:07 server postfix/qmgr[6143]: 480461000847: from=<>, size=2652, nrcpt=1 (queue active)
 Nov 19 23:32:07 server postfix/qmgr[6143]: 051A41000841: removed
 Nov 19 23:32:07 server postfix/smtp[6334]: 480461000847: to=<root@migraciones09.gob.pe>, relay=mail.migraciones09.gob.pe[192.168.100.128]:25, delay=0.06, delays=0/0/0.04/0.01, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 3516248843)
+Nov 19 23:32:07 server postfix/qmgr[6143]: 480461000847: removed
+Nov 19 23:33:44 server postfix/pickup[6142]: C90F51000841: uid=0 from=<root>
+Nov 19 23:33:44 server postfix/cleanup[6332]: C90F51000841: message-id=<av/NqN1q1OK/zqJp@server.migraciones09.gob.pe>
+Nov 19 23:33:44 server postfix/qmgr[6143]: C90F51000841: from=<root@migraciones09.gob.pe>, size=453, nrcpt=1 (queue active)
+Nov 19 23:33:44 server postfix/smtp[6334]: C90F51000841: to=<root@migraciones09.gob.pe>, relay=mail.migraciones09.gob.pe[192.168.100.128]:25, delay=0.03, delays=0/0/0.02/0, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as AE77548843)
 ```
-
-
 
 
 <h3><br><strong>## Configurar zonas DNS</strong></h3>
