@@ -104,8 +104,24 @@ Ingresamos a la regla recien creada
 Configuramos la regla para que se asocie al usuario personal, el server como unico cliente disponible y el grupo de comandos creado
 <p align="center"><img src="../images/idm61.png?raw=true"></p>
 
-
-En este punto la regla se encuentra activa, la validación de la regla se realizara cuando tenga un equipo cliente registrado
+En este punto la regla se encuentra activa, la validación desde el servidor idm que funciona como primer cliente registrado en la plataforma
+```
+login as: andy.reyes
+Keyboard-interactive authentication prompts from server:
+| Password:
+End of keyboard-interactive prompts from server
+[andy.reyes@server ~]$ touch a b
+[andy.reyes@server ~]$ ll
+total 0
+-rw-r--r--. 1 andy.reyes andy.reyes 0 Nov 20 11:58 a
+-rw-r--r--. 1 andy.reyes andy.reyes 0 Nov 20 11:58 b
+[andy.reyes@server ~]$ sudo chown root a
+[andy.reyes@server ~]$ sudo chgrp root b
+[andy.reyes@server ~]$ ll
+total 0
+-rw-r--r--. 1 root       andy.reyes 0 Nov 20 11:58 a
+-rw-r--r--. 1 andy.reyes root       0 Nov 20 11:58 b
+```
 
 La regla ya fue creada, sin embargo tambien existe la necesidad de aumentar los comandos sudo en el grupo, para ello podemos apoyarnos en la linea de comandos para agregar comandos nuevos
 <br>`# kinit admin@DOMAIN01.NET`
