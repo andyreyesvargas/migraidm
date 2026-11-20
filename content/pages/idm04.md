@@ -57,7 +57,6 @@ Ingresamos los datos del nuevo registro, es importante seleccionar el check de r
 <p align="center"><img src="../images/idm34.png?raw=true"></p>
 
 Para validar la resolución del registro DNS ingresamos al servidor con el DNS server configurado, primero nos aseguramos que el archivo de configuración `/etc/sysconfig/network-scripts/ifcfg-ens***` tenga el DNS con nuestro servidor. Luego usamos el comando DIG o NSLOOKUP para validar la resolución
-<br>`# dig +short satellite.domain01.net`
 <br>`# nslookup satellite.migraciones09.gob.pe`
 
 Este procedimiento puede realizarse tambien con la linea de comandos:
