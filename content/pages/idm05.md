@@ -84,37 +84,26 @@ Agregamos comandos al nuevo grupo
 <p align="center"><img src="../images/idm54.png?raw=true"></p>
 
 Seleccionamos los comandos disponibles en la izquierda y los trasladamos a la derecha
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm528.png?raw=true"></p>
+<p align="center"><img src="../images/idm55.png?raw=true"></p>
 
 Aceptamos los cambios
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm529.png?raw=true"></p>
+<p align="center"><img src="../images/idm56.png?raw=true"></p>
 
-Creamos un nuevo usuario en la plataforma IDM y lo agregamos a un grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm530.png?raw=true"></p>
+Ingresamos a la seccion de reglas SUDO
+<p align="center"><img src="../images/idm57.png?raw=true"></p>
 
-Ahora vamos a la sección POLITICAS > SUDO > REGLAS para crear nuestra primera regla de acceso
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm531.png?raw=true"></p>
+Agregamos la nueva regla SUDO
+<p align="center"><img src="../images/idm58.png?raw=true"></p>
 
-Creamos una nueva Regla SUDO
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm532.png?raw=true"></p>
+Nombramos la regla
+<p align="center"><img src="../images/idm59.png?raw=true"></p>
 
-nombramos la regla
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm533.png?raw=true"></p>
+Ingresamos a la regla recien creada
+<p align="center"><img src="../images/idm60.png?raw=true"></p>
 
-Seleccionamos la regla creada
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm534.png?raw=true"></p>
+Configuramos la regla para que se asocie al usuario personal, el server como unico cliente disponible y el grupo de comandos creado
+<p align="center"><img src="../images/idm61.png?raw=true"></p>
 
-La regla tiene varias opciones para su configuracion, por ahora solo modificaremos la directiva QUIEN y QUE. Seleccionamos quien puede ejecutar la regla
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm535.png?raw=true"></p>
-
-Permitimos al grupo de quien puede ejecutar
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm536.png?raw=true"></p>
-
-Ahora modificamos QUE puede hacer este grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm537.png?raw=true"></p>
-
-Seleccionamos el grupo de comandos
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm538.png?raw=true"></p>
 
 En este punto la regla se encuentra activa, la validación de la regla se realizara cuando tenga un equipo cliente registrado
 
