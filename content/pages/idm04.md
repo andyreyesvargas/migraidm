@@ -31,18 +31,16 @@ La resolución de DNS se realiza a través del servidor IDM pero solo dentro de 
 <p align="center"><img src="../images/idm26.png?raw=true"></p>
 
 Ingresamos a la sección de Servicios de Red y la configuración DNS
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm502.png?raw=true"></p>
+<p align="center"><img src="../images/idm27.png?raw=true"></p>
 
 Seleccionamos el único servidor DNS configurado
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm503.png?raw=true"></p>
+<p align="center"><img src="../images/idm28.png?raw=true"></p>
 
 Con el botón AGREGAR, ingresamos un nuevo registro de forwarder para la resolución de registros externos a nuestro dominio
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm504.png?raw=true"></p>
+<p align="center"><img src="../images/idm29.png?raw=true"></p>
 
 Finalizamos la configuración con el botón GUARDAR
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm505.png?raw=true"></p>
-
-
+<p align="center"><img src="../images/idm30.png?raw=true"></p>
 
 
 <h3><br><strong>## Creación de registros DNS</strong></h3>
