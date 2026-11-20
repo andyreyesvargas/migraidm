@@ -45,27 +45,27 @@ Finalizamos la configuración con el botón GUARDAR
 
 <h3><br><strong>## Creación de registros DNS</strong></h3>
 Para crear registros nuevos en la zona DNS que se implemento durante el proceso de instalación ingresamos a la sección de Servicios de Red y Zonas DNS
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm506.png?raw=true"></p>
+<p align="center"><img src="../images/idm31.png?raw=true"></p>
 
 Seleccionamos la zona DNS creada en el proceso de instalación
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm507.png?raw=true"></p>
+<p align="center"><img src="../images/idm32.png?raw=true"></p>
 
 Le damos click al botón AGREGAR
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm508.png?raw=true"></p>
+<p align="center"><img src="../images/idm33.png?raw=true"></p>
 
 Ingresamos los datos del nuevo registro, es importante seleccionar el check de registro inverso para que se cree el registro de IP a Nombre adicional al de Nombre a IP
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm_upgrade/idm_a010.png?raw=true"></p>
+<p align="center"><img src="../images/idm34.png?raw=true"></p>
 
 Para validar la resolución del registro DNS ingresamos al servidor con el DNS server configurado, primero nos aseguramos que el archivo de configuración `/etc/sysconfig/network-scripts/ifcfg-ens***` tenga el DNS con nuestro servidor. Luego usamos el comando DIG o NSLOOKUP para validar la resolución
 <br>`# dig +short satellite.domain01.net`
-<br>`# nslookup satellite.domain01.net`
+<br>`# nslookup satellite.migraciones09.gob.pe`
 
 Este procedimiento puede realizarse tambien con la linea de comandos:
-<br>`# kinit admin@DOMAIN01.NET`
-<br>`# ipa dnsrecord-add domain01.net ftp --a-rec 192.168.100.203`
-<br>`# ipa dnsrecord-add 100.168.192.in-addr.arpa. 203 --ptr-rec ftp.domain01.net.`
-<br>`# dig +short ftp.domain01.net`
-<br>`# nslookup ftp.domain01.net`
+<br>`# kinit admin@MIGRACIONES09.GOB.PE`
+<br>`# ipa dnsrecord-add migraciones09.gob.pe ftp --a-rec 192.168.109.202`
+<br>`# ipa dnsrecord-add 109.168.192.in-addr.arpa. 202 --ptr-rec ftp.migraciones09.gob.pe.`
+<br>`# dig +short ftp.migraciones09.gob.pe`
+<br>`# nslookup ftp.migraciones09.gob.pe`
 
 <h3><strong>Laboratorio</strong></h3>
 <br>Con lo aprendido cree un registro DNS mail que redireccione a la IP 192.168.100.203
