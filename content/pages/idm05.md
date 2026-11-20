@@ -124,12 +124,12 @@ total 0
 ```
 
 La regla ya fue creada, sin embargo tambien existe la necesidad de aumentar los comandos sudo en el grupo, para ello podemos apoyarnos en la linea de comandos para agregar comandos nuevos
-<br>`# kinit admin@DOMAIN01.NET`
+<br>`# kinit admin@MIGRACIONES09.GOB.PE`
 <br>`# ipa sudocmd-add /usr/bin/less --desc="Comando LESS"`
 <br>`# ipa sudocmd-add /usr/bin/more --desc="Comando MORE"`
 <br>`# ipa sudocmdgroup-add-member --sudocmds '/usr/bin/more' gestionarchivos`
 <br>`# ipa sudocmdgroup-add-member --sudocmds '/usr/bin/less' gestionarchivos`
-<br>`# ipa sudocmdgroup-show gestionarchivos`
+<br>`# ipa sudocmdgroup-show gestionarchivoslinux`
 
 <h3><br><strong>Laboratorio</strong></h3>
 <br>Use el comando visudo y elimine las 2 lineas que creo en el primer laboratorio y replique la regla de acceso creada por el instructor
