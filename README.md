@@ -15,7 +15,7 @@
 | 02 | Calero Carpio, Gladys Lizeth | 192.168.102.0/24 | 192.168.102.10 | 192.168.102.11 |
 | 03 | Portugal Guerrero, Arthur Jonnathan | 192.168.103.0/24 | 192.168.103.10 | 192.168.103.11 |
 | 04 | Moron Huanay, Ricardo Luis | 192.168.104.0/24 | 192.168.104.10 | 192.168.104.11 |
-| 05 | Salazar Canchihuaman, Brian Wilmer | 192.168.105.0/24 | 192.168.105.10 | 192.168.105.11 |
+| 05 | Mori Torres, Sandy  | 192.168.105.0/24 | 192.168.105.10 | 192.168.105.11 |
 | 06 | Villanueva Loarte, Jorge Lucio | 192.168.106.0/24 | 192.168.106.10 | 192.168.106.11 |
 
 
