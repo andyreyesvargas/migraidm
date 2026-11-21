@@ -83,9 +83,6 @@ Le damos click al botón AGREGAR
 Ingresamos los datos del registro MX
 <p align="center"><img src="../images/idm37.png?raw=true"></p>
 
-<h3><strong>Laboratorio</strong></h3>
-<br>Cree su propio registro MX acorde al procedimiento mencionado
-
 Para validar la resolución del registro de correo usamos
 <br>`# nslookup`
 <br>`# > set q=mx`
