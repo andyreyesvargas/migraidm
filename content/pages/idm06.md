@@ -108,6 +108,7 @@ uid=70002(jaime.zamudio) gid=70002(editors) groups=70002(editors),70007(operador
 ```
 <h3><br><strong>## Desinstalar cliente IDM</strong></h3>
 El cliente IDM puede ser desinstalado con el siguiente procedimiento, el sistema debera reiniciar necesariamente
+
 ```
 [root@client ~]# ipa-client-install --uninstall
 Unenrolling client from IPA server
@@ -125,12 +126,14 @@ You may need to restart services or reboot the machine.
 Do you want to reboot the machine? [no]: yes
 The ipa-client-install command was successful
 ```
+
 Tambien borramos el equipo del GUI incluyendo los registros DNS que se crearon al registrarlo
 <p align="center"><img src="../images/idm62.png?raw=true"></p>
 <p align="center"><img src="../images/idm63.png?raw=true"></p>
 
 <h3><br><strong>## Instalar cliente IDM con OTP</strong></h3>
 Para registrar un cliente IDM usando una contraseña de un solo, debemos crear el registro DNS y el registro vacio con una contraseña de un solo desde el server
+
 ```
 [root@server ~]# kinit admin
 Password for admin@MIGRACIONES09.GOB.PE:
@@ -147,7 +150,9 @@ Added host "client.migraciones09.gob.pe"
   Keytab: False
   Managed by: client.migraciones09.gob.pe
 ```
+
 En el ejemplo anterior se crea una contraseña como RAMDOM PASSWORD, extraemos eso para ejecutarlo en el cliente y tener una instalacion y configuración de cliente sin exponer la clave de admin
+
 ```
 [root@client ~]# ipa-client-install --ntp-server=192.168.100.129 --mkhomedir --password='7AlexHtraATJGunHqXjEoJi'   --unattended
 This program will set up IPA client.
@@ -189,6 +194,7 @@ Configured /etc/krb5.conf for IPA realm MIGRACIONES09.GOB.PE
 Client configuration complete.
 The ipa-client-install command was successful
 ```
+
 Se valida con algunos comandos que busquen la base de datos de idm
 ```
 [root@client ~]# id andy.reyes
