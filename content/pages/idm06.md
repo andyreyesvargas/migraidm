@@ -249,6 +249,10 @@ Si se desea un usuario super-admin que tenga acceso tanto al IDM como a los clie
 <br>- Reservar el usuario para labores de gestion y recuperacion ante eventos complejos
 
 Se crea el usuario admin_nigra
+<p align="center"><img src="../images/idm74.png?raw=true"></p>
+<p align="center"><img src="../images/idm75.png?raw=true"></p>
+<p align="center"><img src="../images/idm76.png?raw=true"></p>
+
 
 
 
