@@ -106,6 +106,30 @@ uid=70003(andy.reyes) gid=70003(andy.reyes) groups=70003(andy.reyes),70007(opera
 [root@client ~]# id jaime.zamudio
 uid=70002(jaime.zamudio) gid=70002(editors) groups=70002(editors),70007(operadores)
 ```
+<h3><br><strong>## Desinstalar cliente IDM</strong></h3>
+El cliente IDM puede ser desinstalado con el siguiente procedimiento, el sistema debera reiniciar necesariamente
+```
+[root@client ~]# ipa-client-install --uninstall
+Unenrolling client from IPA server
+Removing Kerberos service principals from /etc/krb5.keytab
+Disabling client Kerberos and LDAP configurations
+Redundant SSSD configuration file /etc/sssd/sssd.conf was moved to /etc/sssd/sssd.conf.deleted
+Restoring client configuration files
+Unconfiguring the NIS domain.
+nscd daemon is not installed, skip configuration
+nslcd daemon is not installed, skip configuration
+Systemwide CA database updated.
+Client uninstall complete.
+The original nsswitch.conf configuration has been restored.
+You may need to restart services or reboot the machine.
+Do you want to reboot the machine? [no]: yes
+The ipa-client-install command was successful
+```
+Tambien borramos el equipo del GUI incluyendo los registros DNS que se crearon al registrarlo
+<p align="center"><img src="../images/idm62.png?raw=true"></p>
+<p align="center"><img src="../images/idm63.png?raw=true"></p>
+
+<h3><br><strong>## Instalar cliente IDM con OTP</strong></h3>
 
 <h3><br><strong>## Gestión de equipos</strong></h3>
 
