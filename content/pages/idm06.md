@@ -281,6 +281,75 @@ Device       Start       End   Sectors  Size Type
 /dev/sda3  3328000 209713151 206385152 98.4G Linux LVM
 ```
 
+<h3><br><strong>## Reglas HBAC</strong></h3>
+Las reglas HBAC son las politicas que permiten el acceso a los servidores registrados como clientes, estos servicios van desde el login, sesion ssh, sesion ftp, acceso web, entre otros, son muy aparte a las reglas sudo que se relacionan con comandos, estos se relacionan mas a servicios de sistema operativo, para identificar esto, vamos a la seccion de HBAC en POLITICAS y vemos 2 reglas por default que dan acceso a servicios de sistema operativo, estas reglas solo dan el acceso inicial, si el sistema tiene un firewall, ACL, o restricciones locales, estas restricciones se van a aplicar
+<p align="center"><img src="../images/idm80.png?raw=true"></p>
+
+Vamos a un terminal y ejecutamos un acceso remoto, siendo aplicado el acceso al servicio de login y ssh
+```
+login as: andy.reyes
+Keyboard-interactive authentication prompts from server:
+| Password:
+End of keyboard-interactive prompts from server
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+Last login: Sun Nov 22 23:34:59 2026 from 192.168.109.1
+[andy.reyes@client ~]$
+```
+
+Ahora seleccionamos las reglas HBAC y las desactivamos
+<p align="center"><img src="../images/idm81.png?raw=true"></p>
+
+Ahora repetimos el logueo
+```
+login as: andy.reyes
+Keyboard-interactive authentication prompts from server:
+| Password:
+End of keyboard-interactive prompts from server
+Access denied
+```
+
+Los HBAC permite crear acceso a servicios, creando un nueva capa de seguridad, donde el usuario o grupo de usuarios primero debe tener un acceso permitido al servidor y luego tener acceso a recursos local con reglas SUDO.
+
+Vamos a crear un grupo de usuarios rhel_admins que tengan acceso a los servidores, este HBAC no otorga permisos a comandos sudo, para ellos la regla sudo debe estar definida, este solo dará acceso al logueo via SSH
+<p align="center"><img src="../images/idm82.png?raw=true"></p>
+
+Ahora creamos la regla de HBAC que permita solo el servicio de autenticacion remota por ssh y los comandos sudo, para esta prueba las reglas default deben estar desactivadas para prevenir que den acceso completo a recursos
+<p align="center"><img src="../images/idm83.png?raw=true"></p>
+<p align="center"><img src="../images/idm84.png?raw=true"></p>
+<p align="center"><img src="../images/idm85.png?raw=true"></p>
+<p align="center"><img src="../images/idm86.png?raw=true"></p>
+
+Ahora podemos loguearnos al sistema client con algun integrante del grupo rhel_admins para validar que pueda ejecutar las reglas sudo definidas en ejercicios previos
+```
+login as: jaime.zamudio
+Keyboard-interactive authentication prompts from server:
+| Password:
+End of keyboard-interactive prompts from server
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+Last login: Mon Nov 23 10:53:42 2026 from 192.168.109.1
+[jaime.zamudio@client ~]$ sudo chown root.root a b c
+[sudo] password for jaime.zamudio:
+[jaime.zamudio@client ~]$ ll
+total 0
+-rw-r--r--. 1 root root 0 Nov 22 23:11 a
+-rw-r--r--. 1 root root 0 Nov 22 23:11 b
+-rw-r--r--. 1 root root 0 Nov 22 23:11 c
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h3><br><strong>## Laboratorio 01</strong></h3>
 <br>- Registrar el equipo client en el IDM (cualquier método)
 <br>- Crear el grupo RHEL9 para que incluya a su client y server
