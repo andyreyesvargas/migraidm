@@ -281,20 +281,20 @@ Device       Start       End   Sectors  Size Type
 /dev/sda3  3328000 209713151 206385152 98.4G Linux LVM
 ```
 
+<h3><br><strong>## Laboratorio 01</strong></h3>
+<br>- Registrar el equipo client en el IDM (cualquier método)
+<br>- Crear el grupo RHEL9 para que incluya a su client y server
+<br>- Crear el grupo file_admins e ingrese un usuario en ese grupo
+<br>- Modifique su regla SUDO para que ahora sea gestionado por los grupos
+<br>      QUIEN: grupo file_admins
+<br>      EQUIPOS: grupo rhel9
+<br>      COMANDOS: grupo gestionar archivos
+
+<h3><br><strong>## Laboratorio 02</strong></h3>
+Cree un usuario super_admin con todos los permisos en todos los equipos sin contraseña de comandos sudo
 
 
-
-
-
-
-
-
-
-
-
-
-<strong>Ejercicio Propuesto</strong>
-
+<h3><br><strong>## Laboratorio 03</strong></h3>
 A continuación se presenta una estructura de grupos de comandos SUDO
 
 <br>REDES
@@ -341,15 +341,15 @@ A continuación se presenta una estructura de grupos de comandos SUDO
 <br>/usr/bin/dnf
 
 <br>Donde se creara el grupo soporte que incluya a su usuario personal
-<br>Ademas crear 2 grupos de equipos, Todos con los servidores IDM y Client y el grupo LinuxServers que solo incluya a client
+<br>Ademas crear 2 grupos de equipos, TODOS con los servidores server y Client y el grupo LINUX que solo incluya a client
 
 Defina los siguientes la siguiente estructura de permisos en su servidor IDM
-<br>Politica-Quien-Que-Donde
+<br>Politica-Quien-Comandos-Equipos
 <br>AccesoRedes-soporte-Redes-TODOS
 <br>AccesoServicios-soporte-Servicios-TODOS
-<br>AccesoAlmacenamiento-soporte-Almacenamiento-LinuxServers
-<br>AccesoProcesos-soporte-Procesos-LinuxServers
-<br>AccesoSoftware-soporte-Software-LinuxServers
+<br>AccesoAlmacenamiento-soporte-Almacenamiento-LINUX
+<br>AccesoProcesos-soporte-Procesos-LINUX
+<br>AccesoSoftware-soporte-Software-LINUX
 
 
 <p><br><a href="idm">volver</a></p>
