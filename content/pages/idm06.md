@@ -23,52 +23,35 @@
 </p>
 
 <strong>Requisitos:</strong>
-<br><strong>- Sistema Operativo RHEL 8.2</strong>
-<br><strong>- Alumno 01:</strong><br>  - idm: 192.168.100.11 client: 192.168.100.21
-<br><strong>- Alumno 02:</strong><br>  - idm: 192.168.100.12 client: 192.168.100.22
-<br><strong>- Alumno 03:</strong><br>  - idm: 192.168.100.13 client: 192.168.100.23
-<br><strong>- Alumno 04:</strong><br>  - idm: 192.168.100.14 client: 192.168.100.24
-<br><strong>- Alumno 05:</strong><br>  - idm: 192.168.100.15 client: 192.168.100.25
-<br><strong>- Alumno 05:</strong><br>  - idm: 192.168.100.16 client: 192.168.100.26
+<br><strong>- Sistema Operativo RHEL 9.4</strong>
 </p>
 
 <h3><strong>## Instalación del cliente Red Hat IDM</strong></h3>
 
-El proceso de instalación inicia con la habilitación de los repositorios de sistema operativo `rhel-8-for-x86_64-baseos-rpms` y `rhel-8-for-x86_64-appstream-rpms` con los comandos:
+El proceso de instalación inicia con la habilitación de los repositorios de sistema operativo `rhel-9-for-x86_64-baseos-rpms` y `rhel-9-for-x86_64-appstream-rpms` con los comandos:
 
-`# subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms`
+`# subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms`
 
-`# subscription-manager repos --enable=rhel-8-for-x86_64-appstream-rpms`
+`# subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms`
 
 
 En caso de no contar con una suscripción activa, se puede utilizar un repositorio creado a partir del ISO de RHEL 8.2 editando el archivo de configuración de repositorio en la ruta `/etc/yum.repos.d/rhel.repo` con el siguiente contenido:
 ```text
-[BaseOS]
-name=BaseOS
+[root@server ~]# vi /etc/yum.repos.d/rhel.repo
+[baseos]
+name=baseos
+baseurl=ftp://ftp.migraciones.gob.pe/rhel94/BaseOS
 enabled=1
-baseurl=ftp://192.168.100.203/rhel82/BaseOS
-gpgcheck=1
+gpgheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-###
-[AppStream]
-name=AppStream
+[appstream]
+name=appstream
+baseurl=ftp://ftp.migraciones.gob.pe/rhel94/AppStream
 enabled=1
-baseurl=ftp://192.168.100.203/rhel82/AppStream
-gpgcheck=1
+gpgheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-###
 ```
 
-
-El comando `dnf repolist` nos permitirá validar la disponibilidad de los repositorios ya sean por suscripción o por ISO
-
-`# dnf repolist`
-
-Al validar la disponibilidad de los repositorios se podrá activar el módulo de IDM con:
-
-`# dnf module enable idm:DL1`
-
-`# dnf distro-sync`
 
 Finalmente, el proceso de instalación se podrá iniciar con el comando:
 
