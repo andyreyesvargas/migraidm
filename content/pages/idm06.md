@@ -1,0 +1,237 @@
+<h1>Registrar una maquina cliente al IDM y valida su funcionamiento</h1>
+
+<p>
+<strong>Meta:</strong>
+<br>Entender el proceso de instalación del cliente IDM para ejecutar operaciones en el.
+</p>
+<p>
+<strong>Objetivos:</strong>
+<br>- Instalar el cliente IDM
+<br>- Aplicar políticas de acceso al cliente IDM
+</p>
+<p>
+<strong>Secciones:</strong>
+<br>- Implementación y uso del cliente IDM
+</p>
+<p>
+<strong>Laboratorios:</strong>
+<br><strong>- Instalación del cliente Red Hat IDM</strong>
+<br><strong>- Configuración del cliente Red Hat IDM</strong>
+<br><strong>- Validación de la regla SUDO</strong>
+<br><strong>- Gestión de equipos</strong>
+
+</p>
+
+<strong>Requisitos:</strong>
+<br><strong>- Sistema Operativo RHEL 8.2</strong>
+<br><strong>- Alumno 01:</strong><br>  - idm: 192.168.100.11 client: 192.168.100.21
+<br><strong>- Alumno 02:</strong><br>  - idm: 192.168.100.12 client: 192.168.100.22
+<br><strong>- Alumno 03:</strong><br>  - idm: 192.168.100.13 client: 192.168.100.23
+<br><strong>- Alumno 04:</strong><br>  - idm: 192.168.100.14 client: 192.168.100.24
+<br><strong>- Alumno 05:</strong><br>  - idm: 192.168.100.15 client: 192.168.100.25
+<br><strong>- Alumno 05:</strong><br>  - idm: 192.168.100.16 client: 192.168.100.26
+</p>
+
+<h3><strong>## Instalación del cliente Red Hat IDM</strong></h3>
+
+El proceso de instalación inicia con la habilitación de los repositorios de sistema operativo `rhel-8-for-x86_64-baseos-rpms` y `rhel-8-for-x86_64-appstream-rpms` con los comandos:
+
+`# subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms`
+
+`# subscription-manager repos --enable=rhel-8-for-x86_64-appstream-rpms`
+
+
+En caso de no contar con una suscripción activa, se puede utilizar un repositorio creado a partir del ISO de RHEL 8.2 editando el archivo de configuración de repositorio en la ruta `/etc/yum.repos.d/rhel.repo` con el siguiente contenido:
+```text
+[BaseOS]
+name=BaseOS
+enabled=1
+baseurl=ftp://192.168.100.203/rhel82/BaseOS
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+###
+[AppStream]
+name=AppStream
+enabled=1
+baseurl=ftp://192.168.100.203/rhel82/AppStream
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+###
+```
+
+
+El comando `dnf repolist` nos permitirá validar la disponibilidad de los repositorios ya sean por suscripción o por ISO
+
+`# dnf repolist`
+
+Al validar la disponibilidad de los repositorios se podrá activar el módulo de IDM con:
+
+`# dnf module enable idm:DL1`
+
+`# dnf distro-sync`
+
+Finalmente, el proceso de instalación se podrá iniciar con el comando:
+
+`# dnf module install idm:DL1/client`
+
+<h3><strong>## Configuración del cliente Red Hat IDM</strong></h3>
+
+Una vez instalado los paquetes necesarios para el servidor Red Hat IDM procedemos a configurar el servicio, para ello primero debemos validar que el servidor cumpla una resolución de nombres básica con el comando `dig`
+
+`# dig +short idm.domain01.net`
+
+A diferencia del servidor IDM el cliente debe integrarse por DNS completamente, por eso debemos validar la configuración del adaptador de red de la siguiente manera
+<br>`# cat /etc/sysconfig/network-scripts/ifcfg-ens*`
+<br>`DNS1=<IP del IDM Server>`
+
+Ahora ya podemos configurar el cliente IDM
+```
+# ipa-client-install --ntp-server=192.168.100.200 --mkhomedir
+Discovery was successful!
+Client hostname: client.domain08.net
+Realm: DOMAIN08.NET
+DNS Domain: domain08.net
+IPA Server: idm.domain01.net
+BaseDN: dc=domain01,dc=net
+NTP server: 192.168.100.200
+Continue to configure the system with these values? [no]: yes
+```
+En caso de solicitar credenciales, ingresar el usuario admin del idm con su contraseña
+
+<br>`# ipa-client-install`
+<br>`Do you want to configure chrony with NTP server or pool address?: no`
+<br>`Continue to configure the system with these values?: yes`
+<br>`User authorized to enroll computers: admin`
+<br>`Password for admin@DOMAIN01.NET: ********`
+<br>`The ipa-client-install command was successful`
+
+El cliente IDM ya se encuentra instalado y configurado, ahora se podrán realizar las validaciones de las políticas de acceso definidas en el capitulo anterior
+
+<h3><br><strong>Laboratorio</strong></h3>
+<br>Instale y configure el cliente IDM en su cliente asignado
+<br>-
+<br>-
+
+<h3><br><strong>## Validación de la regla SUDO</strong></h3>
+
+Durante la creación de la regla SUDO respondimos a la sección de QUIEN y QUE pueden ejecutar la política, ahora podemos responder a la pregunta DONDE, para ellos modificamos la regla en la siguiente sección
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm601.png?raw=true"></p>
+
+Buscamos nuestro cliente recién registrado y lo desplazamos de la izquierda a la derecha
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm602.png?raw=true"></p>
+
+Aceptamos los cambios en la regla<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm603.png?raw=true"></p>
+
+
+<h3><br><strong>Laboratorio</strong></h3>
+<br>Modifique su regla de acceso del capitulo anterior para que sea ejecutable desde su cliente
+<br>-
+
+<h3><br><strong>Laboratorio</strong></h3>
+<br>Valide la constraseña de su usuario personal con el siguiente procedimiento
+<br>- Inicie sesion via ssh con su usuario personal del idm en el servidor idm
+<br>- Ingrese la contraseña actual
+<br>- De ser necesario actualice la constraseña
+<br>-
+
+<h3><br><strong>Laboratorio</strong></h3>
+<br>Con la regla terminada podemos ingresar a un terminal y validar el acceso desde el servidor `client`
+<br>`# su - andy.reyes`
+<br>`$ cd /tmp`
+<br>`$ touch file`
+<br>`$ sudo chown root file`
+<br>`$ sudo chgrp root file`
+<br>`$ ll file`
+
+
+
+<h3><br><strong>## Gestión de equipos</strong></h3>
+
+
+Considerando que los servicios informáticos están formados por grupos de servidores divididos en ambientes como producción, desarrollo y qa, es necesario gestionar los equipos en grupos para dividirlos por su función o ambiente.
+
+Para crear un grupo de servidores ingresamos a la sección IDENTIDAD > GRUPOS > EQUIPOS
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm604.png?raw=true"></p>
+
+Agregamos un nuevo grupo
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm605.png?raw=true"></p>
+
+Ingresamos los datos del nuevo grupo
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm606.png?raw=true"></p>
+
+Seleccionamos el nuevo grupo
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm607.png?raw=true"></p>
+
+Agregamos un equipo al nuevo grupo
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm608.png?raw=true"></p>
+
+Desplazamos un equipo de la parte izquierda a la derecha
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm609.png?raw=true"></p>
+
+Aceptamos los cambios
+<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm610.png?raw=true"></p>
+
+Para validar los integrantes de un grupo de equipos podemos usar la linea de comandos
+<br>`# kinit admin@DOMAIN01.NET`
+<br>`# ipa hostgroup-show test`
+
+<strong>Ejercicio Propuesto</strong>
+
+A continuación se presenta una estructura de grupos de comandos SUDO
+
+<br>REDES
+<br>/sbin/route
+<br>/sbin/ifconfig
+<br>/bin/ping
+<br>/sbin/dhclient
+<br>/usr/bin/net
+<br>/sbin/iptables
+<br>/usr/bin/rfcomm
+<br>/usr/bin/wvdial
+<br>/sbin/iwconfig
+<br>/sbin/mii-tool
+
+<br>SERVICIOS
+<br>/sbin/service
+<br>/sbin/chkconfig
+<br>/usr/bin/systemctl start
+<br>/usr/bin/systemctl stop
+<br>/usr/bin/systemctl reload
+<br>/usr/bin/systemctl restart
+<br>/usr/bin/systemctl status
+<br>/usr/bin/systemctl enable
+<br>/usr/bin/systemctl disable
+
+<br>ALMACENAMIENTO
+<br>/sbin/fdisk
+<br>/sbin/sfdisk
+<br>/sbin/parted
+<br>/sbin/partprobe
+<br>/bin/mount
+<br>/bin/umount
+
+<br>PROCESOS
+<br>/bin/nice
+<br>/bin/kill
+<br>/usr/bin/kill
+<br>/usr/bin/killall
+
+<br>SOFTWARE
+<br>/bin/rpm
+<br>/usr/bin/up2date
+<br>/usr/bin/yum
+<br>/usr/bin/dnf
+
+<br>Donde se creara el grupo soporte que incluya a su usuario personal
+<br>Ademas crear 2 grupos de equipos, Todos con los servidores IDM y Client y el grupo LinuxServers que solo incluya a client
+
+Defina los siguientes la siguiente estructura de permisos en su servidor IDM
+<br>Politica-Quien-Que-Donde
+<br>AccesoRedes-soporte-Redes-TODOS
+<br>AccesoServicios-soporte-Servicios-TODOS
+<br>AccesoAlmacenamiento-soporte-Almacenamiento-LinuxServers
+<br>AccesoProcesos-soporte-Procesos-LinuxServers
+<br>AccesoSoftware-soporte-Software-LinuxServers
+
+
+<p><br><a href="idm">volver</a></p>
