@@ -99,7 +99,14 @@ Client configuration complete.
 The ipa-client-install command was successful
 ```
 
-El cliente IDM ya se encuentra instalado y configurado, ahora se podrán realizar las validaciones de las políticas de acceso definidas en el capitulo anterior
+El cliente IDM ya se encuentra instalado y configurado, ahora se podrán realizar las validaciones de las políticas de acceso definidas en el capitulo anterior, podemos validar la integración haciendo consultas de usuarios de ejercicios previos que no existen de forma local
+```
+[root@client ~]# id andy.reyes
+uid=70003(andy.reyes) gid=70003(andy.reyes) groups=70003(andy.reyes),70007(operadores)
+[root@client ~]# id jaime.zamudio
+uid=70002(jaime.zamudio) gid=70002(editors) groups=70002(editors),70007(operadores)
+```
+
 
 
 <h3><br><strong>## Validación de la regla SUDO</strong></h3>
