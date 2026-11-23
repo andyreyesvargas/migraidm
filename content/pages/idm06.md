@@ -256,7 +256,7 @@ Se crea el usuario admin_nigra
 Se crea la regla SUDO super_admin
 <p align="center"><img src="../images/idm77.png?raw=true"></p>
 
-Hacemos que la regla sudo tenga la opcion !authenticate para que no pida contraseña al momento de ejecutar los comandos sudo, y todas las demas opciones lo dejamos en CUALQUIERA
+Hacemos que la regla sudo tenga la opcion !authenticate para que no pida contraseña al momento de ejecutar los comandos sudo, en quien el usuario admin_migra como unico usuario con ese rol de super_admin y todas las demas opciones lo dejamos en CUALQUIERA
 <p align="center"><img src="../images/idm78.png?raw=true"></p>
 <p align="center"><img src="../images/idm79.png?raw=true"></p>
 
