@@ -238,8 +238,25 @@ COMANDOS: grupo gestionar archivos
 <p align="center"><img src="../images/idm72.png?raw=true"></p>
 <p align="center"><img src="../images/idm73.png?raw=true"></p>
 
-
 A partir de ahora, la regla deberia permanecer y solo agregar integrantes a los grupos
+
+<h3><br><strong>## Usuario super-admin</strong></h3>
+Si se desea un usuario super-admin que tenga acceso tanto al IDM como a los clientes, podemos hacer la creacion via IDM pero se considera algunos escenarios para prevenir el uso indebido de este usuario
+
+<br>- No replicar el procedimiento en un grupo, ya que es un rol tan especial que deberia ser unico(aplicarlo al usuario)
+<br>- Considerar la seguridad del doble factor de autenticación o una contraseña compleja en extremo
+<br>- Agregar el usuario al grupo admins
+<br>- Reservar el usuario para labores de gestion y recuperacion ante eventos complejos
+
+Se crea el usuario admin_nigra
+
+
+
+
+
+
+
+
 
 <strong>Ejercicio Propuesto</strong>
 
