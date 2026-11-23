@@ -362,7 +362,6 @@ drwx------. 2 jaime.zamudio editors     110 Nov 22 23:29 jaime.zamudio
 [root@client home]# id julio.torres
 uid=70021(julio.torres) gid=70021(julio.torres) groups=70021(julio.torres),70029(alpha),70034(ftp_users),70028(todos)
 [root@client home]# mkdir julio.torres
-[root@client home]# chown 70021.70021 julio.torres
 [root@client home]# echo "Hola Julio" > julio.torres/test.txt
 [root@client home]# chown -R 70021.70021 julio.torres
 ```
