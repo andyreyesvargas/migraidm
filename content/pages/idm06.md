@@ -218,7 +218,28 @@ Ahora agregamos los server al grupo
 <p align="center"><img src="../images/idm66.png?raw=true"></p>
 <p align="center"><img src="../images/idm67.png?raw=true"></p>
 
+<h3><br><strong>## Validacion de reglas SUDO</strong></h3>
+Para realizar una gestion correcta de permisos, se trabajara solo con grupos, es decir, crearemos un grupo file_admins el cual integrara algunos usuarios que haran la gestion de permisos de archivos como los comandos chgrp, chwon entre otros
 
+Agregamos un grupo
+<p align="center"><img src="../images/idm68.png?raw=true"></p>
+
+Creamos el grupo file_admins
+<p align="center"><img src="../images/idm69.png?raw=true"></p>
+
+Agregamos usuarios al grupo
+<p align="center"><img src="../images/idm70.png?raw=true"></p>
+<p align="center"><img src="../images/idm71.png?raw=true"></p>
+
+Vamos a las reglas sudo y editamos la regla de gestion de archivos, ahora podemos reordenarla para que cumplan el siguiente requisito
+QUIEN: grupo file_admins
+EQUIPOS: grupo rhel9
+COMANDOS: grupo gestionar archivos
+<p align="center"><img src="../images/idm72.png?raw=true"></p>
+<p align="center"><img src="../images/idm73.png?raw=true"></p>
+
+
+A partir de ahora, la regla deberia permanecer y solo agregar integrantes a los grupos
 
 <strong>Ejercicio Propuesto</strong>
 
