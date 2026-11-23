@@ -264,11 +264,8 @@ Podemos validar el usuario con un comando administrativo que no haya sido defini
 ```
 login as: admin_migra
 Keyboard-interactive authentication prompts from server:
-| Password:
-End of keyboard-interactive prompts from server
-Register this system with Red Hat Insights: insights-client --register
-Create an account or view all your systems at https://red.ht/insights-dashboard
-Last login: Sun Nov 22 23:30:46 2026 from 192.168.109.1
+| Password: ***
+
 [admin_migra@client ~]$ sudo fdisk -l /dev/sda
 Disk /dev/sda: 100 GiB, 107374182400 bytes, 209715200 sectors
 Disk model: Virtual disk
