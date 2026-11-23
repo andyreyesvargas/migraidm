@@ -54,46 +54,53 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 
 Finalmente, el proceso de instalación se podrá iniciar con el comando:
+```
+[root@client ~]# yum install ipa-client -y
+Updating Subscription Management repositories.
 
-`# dnf module install idm:DL1/client`
+Complete!
+```
 
 <h3><strong>## Configuración del cliente Red Hat IDM</strong></h3>
 
 Una vez instalado los paquetes necesarios para el servidor Red Hat IDM procedemos a configurar el servicio, para ello primero debemos validar que el servidor cumpla una resolución de nombres básica con el comando `dig`
-
-`# dig +short idm.domain01.net`
+```
+[root@client ~]# dig +short server.migraciones09.gob.pe
+192.168.109.10
+```
 
 A diferencia del servidor IDM el cliente debe integrarse por DNS completamente, por eso debemos validar la configuración del adaptador de red de la siguiente manera
-<br>`# cat /etc/sysconfig/network-scripts/ifcfg-ens*`
-<br>`DNS1=<IP del IDM Server>`
+<br>`# cat /etc/NetworkManager/system-connections/ens*  | grep dns`
+<br>`dns=192.168.109.10;`
 
-Ahora ya podemos configurar el cliente IDM
+Ahora ya podemos configurar el cliente IDM referenciando al servidos ntp 192.168.100.129
 ```
-# ipa-client-install --ntp-server=192.168.100.200 --mkhomedir
+[root@client ~]# ipa-client-install --ntp-server=192.168.100.129 --mkhomedir
+This program will set up IPA client.
+Version 4.11.0
+
 Discovery was successful!
-Client hostname: client.domain08.net
-Realm: DOMAIN08.NET
-DNS Domain: domain08.net
-IPA Server: idm.domain01.net
-BaseDN: dc=domain01,dc=net
-NTP server: 192.168.100.200
-Continue to configure the system with these values? [no]: yes
-```
-En caso de solicitar credenciales, ingresar el usuario admin del idm con su contraseña
+Client hostname: client.migraciones09.gob.pe
+Realm: MIGRACIONES09.GOB.PE
+DNS Domain: migraciones09.gob.pe
+IPA Server: server.migraciones09.gob.pe
+BaseDN: dc=migraciones09,dc=gob,dc=pe
+NTP server: 192.168.100.129
 
-<br>`# ipa-client-install`
-<br>`Do you want to configure chrony with NTP server or pool address?: no`
-<br>`Continue to configure the system with these values?: yes`
-<br>`User authorized to enroll computers: admin`
-<br>`Password for admin@DOMAIN01.NET: ********`
-<br>`The ipa-client-install command was successful`
+Continue to configure the system with these values? [no]: yes
+Synchronizing time
+Configuration of chrony was changed by installer.
+Attempting to sync time with chronyc.
+Time synchronization was successful.
+User authorized to enroll computers: admin
+Password for admin@MIGRACIONES09.GOB.PE: ******
+
+Client configuration complete.
+The ipa-client-install command was successful
+```
 
 El cliente IDM ya se encuentra instalado y configurado, ahora se podrán realizar las validaciones de las políticas de acceso definidas en el capitulo anterior
 
-<h3><br><strong>Laboratorio</strong></h3>
-<br>Instale y configure el cliente IDM en su cliente asignado
-<br>-
-<br>-
 
 <h3><br><strong>## Validación de la regla SUDO</strong></h3>
 
