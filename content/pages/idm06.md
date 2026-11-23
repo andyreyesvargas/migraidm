@@ -338,16 +338,51 @@ total 0
 -rw-r--r--. 1 root root 0 Nov 22 23:11 c
 ```
 
+<h3><br><strong>## Reglas HBAC para servicios restringidos</strong></h3>
+Se pueden crear reglas de HBAC para dar acceso a servicios pubicos que sean restringidos a usuarios del IDM, sin que suponga dar acceso al terminal SSH o las reglas SUDO, por ejemplo un servicio ftp o web da un acceso via cliente web o cliente ftp sin dar un terminal al linux ni tener reglas de comandos, para ellos vamos a crear un servicio el el cliente, el servicio vsftp
+```
+[root@client ~]# yum install -y vsftpd ftp
+[root@client ~]# systemctl enable vsftpd --now
+[root@client ~]# firewall-cmd --permanent --add-service=ftp
+[root@client ~]# firewall-cmd --reload
+```
 
+Vamos a crear un grupo nuevo que incluya  a usuarios que no han sido definidos en reglas de acceso anteriores
+<p align="center"><img src="../images/idm87.png?raw=true"></p>
 
+Del grupo anterior seleccionamos un usuario para nuestras pruebas, a ese usuario le creamos un home en el client con algun contenido ftp
+```
+[root@client ~]# cd /home/
+[root@client home]# ll
+total 0
+drwx------. 2 admin_migra   admin_migra  83 Nov 22 23:30 admin_migra
+drwx------. 2 andy.reyes    andy.reyes   83 Nov 22 23:48 andy.reyes
+drwx------. 2 jaime.zamudio editors     110 Nov 22 23:29 jaime.zamudio
 
+[root@client home]# id julio.torres
+uid=70021(julio.torres) gid=70021(julio.torres) groups=70021(julio.torres),70029(alpha),70034(ftp_users),70028(todos)
+[root@client home]# mkdir julio.torres
+[root@client home]# chown 70021.70021 julio.torres
+[root@client home]# echo "Hola Julio" > julio.torres/test.txt
+[root@client home]# chown -R 70021.70021 julio.torres
+```
 
+Con los recursos creados, procedemos con la regla HBAC
+<p align="center"><img src="../images/idm88.png?raw=true"></p>
+<p align="center"><img src="../images/idm89.png?raw=true"></p>
 
+Ahora vamos a un cliente ftp y validamos el acceso a julio.torres
+<p align="center"><img src="../images/idm90.png?raw=true"></p>
+<p align="center"><img src="../images/idm91.png?raw=true"></p>
 
-
-
-
-
+Como la idea es tener un acceso ftp sin dar privilegios de ssh o sudos, se valida tambien que no se pueda loguear por cliente ssh
+```
+login as: julio.torres
+Keyboard-interactive authentication prompts from server:
+| Password:
+End of keyboard-interactive prompts from server
+Access denied
+```
 
 
 <h3><br><strong>## Laboratorio 01</strong></h3>
@@ -362,8 +397,13 @@ total 0
 <h3><br><strong>## Laboratorio 02</strong></h3>
 Cree un usuario super_admin con todos los permisos en todos los equipos sin contraseña de comandos sudo
 
-
 <h3><br><strong>## Laboratorio 03</strong></h3>
+Use las reglas HBAC para añadir la capa de servicios, solo SSH y SUDO a los grupos permitidos en sus reglas SUDO, como RHEL_admins
+
+<h3><br><strong>## Laboratorio 04</strong></h3>
+Implemente el servicio VSFTP para permitir el acceso al ftp instalado en su CLIENT, el cual debera estar disponible para un grupo de usuarios que no tengan ningún acceso SSH o SUDO, seleccione usuarios que no han sido usados aun, haga sus pruebas creando un home a uno de esos usuarios
+
+<h3><br><strong>## Laboratorio 05</strong></h3>
 A continuación se presenta una estructura de grupos de comandos SUDO
 
 <br>REDES
@@ -421,4 +461,4 @@ Defina los siguientes la siguiente estructura de permisos en su servidor IDM
 <br>AccesoSoftware-soporte-Software-LINUX
 
 
-<p><br><a href="idm">volver</a></p>
+<p><br><a href="idm.md">volver</a></p>
