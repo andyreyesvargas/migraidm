@@ -107,41 +107,6 @@ uid=70003(andy.reyes) gid=70003(andy.reyes) groups=70003(andy.reyes),70007(opera
 uid=70002(jaime.zamudio) gid=70002(editors) groups=70002(editors),70007(operadores)
 ```
 
-
-
-<h3><br><strong>## Validación de la regla SUDO</strong></h3>
-
-Durante la creación de la regla SUDO respondimos a la sección de QUIEN y QUE pueden ejecutar la política, ahora podemos responder a la pregunta DONDE, para ellos modificamos la regla en la siguiente sección
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm601.png?raw=true"></p>
-
-Buscamos nuestro cliente recién registrado y lo desplazamos de la izquierda a la derecha
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm602.png?raw=true"></p>
-
-Aceptamos los cambios en la regla<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm603.png?raw=true"></p>
-
-
-<h3><br><strong>Laboratorio</strong></h3>
-<br>Modifique su regla de acceso del capitulo anterior para que sea ejecutable desde su cliente
-<br>-
-
-<h3><br><strong>Laboratorio</strong></h3>
-<br>Valide la constraseña de su usuario personal con el siguiente procedimiento
-<br>- Inicie sesion via ssh con su usuario personal del idm en el servidor idm
-<br>- Ingrese la contraseña actual
-<br>- De ser necesario actualice la constraseña
-<br>-
-
-<h3><br><strong>Laboratorio</strong></h3>
-<br>Con la regla terminada podemos ingresar a un terminal y validar el acceso desde el servidor `client`
-<br>`# su - andy.reyes`
-<br>`$ cd /tmp`
-<br>`$ touch file`
-<br>`$ sudo chown root file`
-<br>`$ sudo chgrp root file`
-<br>`$ ll file`
-
-
-
 <h3><br><strong>## Gestión de equipos</strong></h3>
 
 
