@@ -260,6 +260,30 @@ Hacemos que la regla sudo tenga la opcion !authenticate para que no pida contras
 <p align="center"><img src="../images/idm78.png?raw=true"></p>
 <p align="center"><img src="../images/idm79.png?raw=true"></p>
 
+Podemos validar el usuario con un comando administrativo que no haya sido definido en el IDM, por ejemplo el fdisk
+```
+login as: admin_migra
+Keyboard-interactive authentication prompts from server:
+| Password:
+End of keyboard-interactive prompts from server
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+Last login: Sun Nov 22 23:30:46 2026 from 192.168.109.1
+[admin_migra@client ~]$ sudo fdisk -l /dev/sda
+Disk /dev/sda: 100 GiB, 107374182400 bytes, 209715200 sectors
+Disk model: Virtual disk
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 09876B94-DE4C-4BDF-8C20-7BC84AF2DFF9
+
+Device       Start       End   Sectors  Size Type
+/dev/sda1     2048   1230847   1228800  600M EFI System
+/dev/sda2  1230848   3327999   2097152    1G Linux filesystem
+/dev/sda3  3328000 209713151 206385152 98.4G Linux LVM
+```
+
 
 
 
