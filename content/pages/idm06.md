@@ -206,33 +206,19 @@ uid=70002(jaime.zamudio) gid=70002(editors) groups=70002(editors),70007(operador
 
 <h3><br><strong>## Gestión de equipos</strong></h3>
 
-
 Considerando que los servicios informáticos están formados por grupos de servidores divididos en ambientes como producción, desarrollo y qa, es necesario gestionar los equipos en grupos para dividirlos por su función o ambiente.
 
-Para crear un grupo de servidores ingresamos a la sección IDENTIDAD > GRUPOS > EQUIPOS
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm604.png?raw=true"></p>
+Para crear un grupo de servidores ingresamos a la sección IDENTIDAD > GRUPOS > GRUPOS DE EQUIPOS
+<p align="center"><img src="../images/idm64.png?raw=true"></p>
 
-Agregamos un nuevo grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm605.png?raw=true"></p>
+Considerando que los servidores SERVER y CLIENT son RHEL9, podemos agruparlo en un grupo RHEL9 para politicas de seguridad exclusivas de esa version
+<p align="center"><img src="../images/idm65.png?raw=true"></p>
 
-Ingresamos los datos del nuevo grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm606.png?raw=true"></p>
+Ahora agregamos los server al grupo
+<p align="center"><img src="../images/idm66.png?raw=true"></p>
+<p align="center"><img src="../images/idm67.png?raw=true"></p>
 
-Seleccionamos el nuevo grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm607.png?raw=true"></p>
 
-Agregamos un equipo al nuevo grupo
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm608.png?raw=true"></p>
-
-Desplazamos un equipo de la parte izquierda a la derecha
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm609.png?raw=true"></p>
-
-Aceptamos los cambios
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm610.png?raw=true"></p>
-
-Para validar los integrantes de un grupo de equipos podemos usar la linea de comandos
-<br>`# kinit admin@DOMAIN01.NET`
-<br>`# ipa hostgroup-show test`
 
 <strong>Ejercicio Propuesto</strong>
 
