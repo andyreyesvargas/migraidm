@@ -130,6 +130,72 @@ Tambien borramos el equipo del GUI incluyendo los registros DNS que se crearon a
 <p align="center"><img src="../images/idm63.png?raw=true"></p>
 
 <h3><br><strong>## Instalar cliente IDM con OTP</strong></h3>
+Para registrar un cliente IDM usando una contraseña de un solo, debemos crear el registro DNS y el registro vacio con una contraseña de un solo desde el server
+```
+[root@server ~]# kinit admin
+Password for admin@MIGRACIONES09.GOB.PE:
+[root@server ~]# ipa dnsrecord-add migraciones09.gob.pe client --a-rec 192.168.109.11
+  Record name: client
+  A record: 192.168.109.11
+[root@server ~]# ipa host-add client.migraciones09.gob.pe --random
+----------------------------------------
+Added host "client.migraciones09.gob.pe"
+----------------------------------------
+  Host name: client.migraciones09.gob.pe
+  Random password: 7AlexHtraATJGunHqXjEoJi
+  Password: True
+  Keytab: False
+  Managed by: client.migraciones09.gob.pe
+```
+En el ejemplo anterior se crea una contraseña como RAMDOM PASSWORD, extraemos eso para ejecutarlo en el cliente y tener una instalacion y configuración de cliente sin exponer la clave de admin
+```
+[root@client ~]# ipa-client-install --ntp-server=192.168.100.129 --mkhomedir --password='7AlexHtraATJGunHqXjEoJi'   --unattended
+This program will set up IPA client.
+Version 4.11.0
+
+Discovery was successful!
+Client hostname: client.migraciones09.gob.pe
+Realm: MIGRACIONES09.GOB.PE
+DNS Domain: migraciones09.gob.pe
+IPA Server: server.migraciones09.gob.pe
+BaseDN: dc=migraciones09,dc=gob,dc=pe
+NTP server: 192.168.100.129
+
+Synchronizing time
+Configuration of chrony was changed by installer.
+Attempting to sync time with chronyc.
+Time synchronization was successful.
+Downloading the CA certificate via HTTP, this is INSECURE
+Successfully retrieved CA cert
+    Subject:     CN=Certificate Authority,O=MIGRACIONES09.GOB.PE
+    Issuer:      CN=Certificate Authority,O=MIGRACIONES09.GOB.PE
+    Valid From:  2026-11-18 05:27:46+00:00
+    Valid Until: 2046-11-18 05:27:46+00:00
+
+Enrolled in IPA realm MIGRACIONES09.GOB.PE
+Created /etc/ipa/default.conf
+Configured /etc/sssd/sssd.conf
+Systemwide CA database updated.
+Adding SSH public key from /etc/ssh/ssh_host_ecdsa_key.pub
+Adding SSH public key from /etc/ssh/ssh_host_ed25519_key.pub
+Adding SSH public key from /etc/ssh/ssh_host_rsa_key.pub
+SSSD enabled
+Configured /etc/openldap/ldap.conf
+Principal is not set when enrolling with OTP or PKINIT; using principal 'admin@migraciones09.gob.pe' for 'getent passwd'.
+Configured /etc/ssh/ssh_config
+Configured /etc/ssh/sshd_config.d/04-ipa.conf
+Configuring migraciones09.gob.pe as NIS domain.
+Configured /etc/krb5.conf for IPA realm MIGRACIONES09.GOB.PE
+Client configuration complete.
+The ipa-client-install command was successful
+```
+Se valida con algunos comandos que busquen la base de datos de idm
+```
+[root@client ~]# id andy.reyes
+uid=70003(andy.reyes) gid=70003(andy.reyes) groups=70003(andy.reyes),70007(operadores)
+[root@client ~]# id jaime.zamudio
+uid=70002(jaime.zamudio) gid=70002(editors) groups=70002(editors),70007(operadores)
+```
 
 <h3><br><strong>## Gestión de equipos</strong></h3>
 
