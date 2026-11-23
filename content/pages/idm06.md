@@ -397,7 +397,8 @@ Access denied
 Cree un usuario super_admin con todos los permisos en todos los equipos sin contraseña de comandos sudo
 
 <h3><br><strong>## Laboratorio 03</strong></h3>
-Use las reglas HBAC para añadir la capa de servicios, solo SSH y SUDO a los grupos permitidos en sus reglas SUDO, como RHEL_admins
+<br>- Use las reglas HBAC para añadir la capa de servicios, solo SSH y SUDO a los grupos permitidos en sus reglas SUDO, como RHEL_admins
+<br>- Cree una regla HBAC para que su super_admin tenga acceso a los servicios SSH y SUDO en toda la infra de servidores IDM
 
 <h3><br><strong>## Laboratorio 04</strong></h3>
 Implemente el servicio VSFTP para permitir el acceso al ftp instalado en su CLIENT, el cual debera estar disponible para un grupo de usuarios que no tengan ningún acceso SSH o SUDO, seleccione usuarios que no han sido usados aun, haga sus pruebas creando un home a uno de esos usuarios
