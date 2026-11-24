@@ -228,6 +228,7 @@ Creamos un reporte de openscap del CIS Server level 2
 --report /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').html \
 --results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
 /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+[root@client ~]# ll /var/www/html/
 ```
 
 De la misma manera podemos crear un reporte ahora asociado al estandard PCI y lo generamos en la misma ruta web
@@ -237,6 +238,7 @@ De la misma manera podemos crear un reporte ahora asociado al estandard PCI y lo
 --report /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').html \
 --results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
 /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+[root@client ~]# ll /var/www/html/
 ```
 
 Podemos actorar el analisis a lineamientos especificos, por ejemplo, descargamos del ftp del salon el archivo de tailoring que permite escanear solo los lineamientos de AIDE y AUDIT
@@ -261,6 +263,7 @@ Profiles:
 --results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
 --tailoring-file ssg-rhel9-ds-aide-tailoring.xml \
 /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+[root@client ~]# ll /var/www/html/
 ```
 
 
