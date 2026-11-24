@@ -35,7 +35,7 @@ El proceso de instalación inicia con la habilitación de los repositorios de si
 `# subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms`
 
 
-En caso de no contar con una suscripción activa, se puede utilizar un repositorio creado a partir del ISO de RHEL 8.2 editando el archivo de configuración de repositorio en la ruta `/etc/yum.repos.d/rhel.repo` con el siguiente contenido:
+En caso de no contar con una suscripción activa, se puede utilizar un repositorio creado a partir del ISO de RHEL 9.4 editando el archivo de configuración de repositorio en la ruta `/etc/yum.repos.d/rhel.repo` con el siguiente contenido:
 ```text
 [root@server ~]# vi /etc/yum.repos.d/rhel.repo
 [baseos]
