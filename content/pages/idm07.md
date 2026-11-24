@@ -145,6 +145,77 @@ Los reportes de openscap nos permiten facilitar el proceso de gestion de lineami
 [root@client ~]# firewall-cmd --reload
 ```
 
+Podemos examinar los perfiles para RHEL9 disponible en el archivo descargado desde la suscripcion de RHEL
+```
+[root@client ~]# oscap info /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+Document type: Source Data Stream
+Imported: 2024-02-14T06:42:50
+
+Stream: scap_org.open-scap_datastream_from_xccdf_ssg-rhel9-xccdf.xml
+Generated: (null)
+Version: 1.3
+Checklists:
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel9-xccdf.xml
+WARNING: Datastream component 'scap_org.open-scap_cref_security-data-oval-v2-RHEL9-rhel-9.oval.xml.bz2' points out to the remote 'https://access.redhat.com/security/data/oval/v2/RHEL9/rhel-9.oval.xml.bz2'. Use '--fetch-remote-resources' option to download it.
+WARNING: Skipping 'https://access.redhat.com/security/data/oval/v2/RHEL9/rhel-9.oval.xml.bz2' file which is referenced from datastream
+                Status: draft
+                Generated: 2024-02-14
+                Resolved: true
+                Profiles:
+                        Title: ANSSI-BP-028 (enhanced)
+                                Id: xccdf_org.ssgproject.content_profile_anssi_bp28_enhanced
+                        Title: ANSSI-BP-028 (high)
+                                Id: xccdf_org.ssgproject.content_profile_anssi_bp28_high
+                        Title: ANSSI-BP-028 (intermediary)
+                                Id: xccdf_org.ssgproject.content_profile_anssi_bp28_intermediary
+                        Title: ANSSI-BP-028 (minimal)
+                                Id: xccdf_org.ssgproject.content_profile_anssi_bp28_minimal
+                        Title: CCN Red Hat Enterprise Linux 9 - Advanced
+                                Id: xccdf_org.ssgproject.content_profile_ccn_advanced
+                        Title: CCN Red Hat Enterprise Linux 9 - Basic
+                                Id: xccdf_org.ssgproject.content_profile_ccn_basic
+                        Title: CCN Red Hat Enterprise Linux 9 - Intermediate
+                                Id: xccdf_org.ssgproject.content_profile_ccn_intermediate
+                        Title: CIS Red Hat Enterprise Linux 9 Benchmark for Level 2 - Server
+                                Id: xccdf_org.ssgproject.content_profile_cis
+                        Title: CIS Red Hat Enterprise Linux 9 Benchmark for Level 1 - Server
+                                Id: xccdf_org.ssgproject.content_profile_cis_server_l1
+                        Title: CIS Red Hat Enterprise Linux 9 Benchmark for Level 1 - Workstation
+                                Id: xccdf_org.ssgproject.content_profile_cis_workstation_l1
+                        Title: CIS Red Hat Enterprise Linux 9 Benchmark for Level 2 - Workstation
+                                Id: xccdf_org.ssgproject.content_profile_cis_workstation_l2
+                        Title: DRAFT - Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
+                                Id: xccdf_org.ssgproject.content_profile_cui
+                        Title: Australian Cyber Security Centre (ACSC) Essential Eight
+                                Id: xccdf_org.ssgproject.content_profile_e8
+                        Title: Health Insurance Portability and Accountability Act (HIPAA)
+                                Id: xccdf_org.ssgproject.content_profile_hipaa
+                        Title: Australian Cyber Security Centre (ACSC) ISM Official
+                                Id: xccdf_org.ssgproject.content_profile_ism_o
+                        Title: Protection Profile for General Purpose Operating Systems
+                                Id: xccdf_org.ssgproject.content_profile_ospp
+                        Title: PCI-DSS v4.0 Control Baseline for Red Hat Enterprise Linux 9
+                                Id: xccdf_org.ssgproject.content_profile_pci-dss
+                        Title: DISA STIG for Red Hat Enterprise Linux 9
+                                Id: xccdf_org.ssgproject.content_profile_stig
+                        Title: DISA STIG with GUI for Red Hat Enterprise Linux 9
+                                Id: xccdf_org.ssgproject.content_profile_stig_gui
+                Referenced check files:
+                        ssg-rhel9-oval.xml
+                                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
+                        ssg-rhel9-ocil.xml
+                                system: http://scap.nist.gov/schema/ocil/2
+                        security-data-oval-v2-RHEL9-rhel-9.oval.xml.bz2
+                                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
+Checks:
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel9-oval.xml
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel9-ocil.xml
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel9-cpe-oval.xml
+        Ref-Id: scap_org.open-scap_cref_security-data-oval-v2-RHEL9-rhel-9.oval.xml.bz2
+Dictionaries:
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel9-cpe-dictionary.xml
+```
+
 Ahora instalamos el producto de openscap en en client
 ```
 [root@client ~]# yum install -y openscap openscap-scanner scap-security-guide unzip
