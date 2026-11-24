@@ -145,6 +145,11 @@ Los reportes de openscap nos permiten facilitar el proceso de gestion de lineami
 [root@client ~]# firewall-cmd --reload
 ```
 
+Ahora instalamos el producto de openscap en en client
+```
+[root@client ~]# yum install -y openscap openscap-scanner scap-security-guide unzip
+```
+
 Podemos examinar los perfiles para RHEL9 disponible en el archivo descargado desde la suscripcion de RHEL
 ```
 [root@client ~]# oscap info /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
@@ -216,10 +221,25 @@ Dictionaries:
         Ref-Id: scap_org.open-scap_cref_ssg-rhel9-cpe-dictionary.xml
 ```
 
-Ahora instalamos el producto de openscap en en client
+Creamos un reporte de openscap del CIS Server level 2
 ```
-[root@client ~]# yum install -y openscap openscap-scanner scap-security-guide unzip
+oscap xccdf eval --fetch-remote-resources --oval-results \
+--profile xccdf_org.ssgproject.content_profile_cis \
+--report /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').html \
+--results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
+/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
 ```
+
+De la misma manera podemos crear un reporte ahora asociado al estandard PCI y lo generamos en la misma ruta web
+```
+[root@client ~]# oscap xccdf eval --fetch-remote-resources --oval-results \
+--profile xccdf_org.ssgproject.content_profile_pci-dss \
+--report /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').html \
+--results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
+/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+```
+
+
 
 <p><br><a href="idm.md">volver</a></p>
 
