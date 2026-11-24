@@ -133,96 +133,21 @@ Creamos la política y la aplicamos al grupo operadores, luego volvemos a verifi
 Ahora creamos otra política asociada a un nuevo grupo, pero con una mejor prioridad, incluimos a ese usuario en el grupo y volvemos a ejecutar el comando
 `# ipa pwpolicy-show --user=andy.reyes`
 
-<h3><br><strong>Laboratorio</strong></h3>
-<br>Cree la nueva política de contraseñas asociada al grupo operadores y registre su usuario personal al grupo operadores, valide la politica aplicada
-<br>-
 
-<h3><strong>## Establecer HBCA</strong></h3>
-
-IDM permite gestionar acceso a servicios dentro de un equipo registrado, sin embargo por default todos los usuarios tienen acceso a todos los hosts, para ello vamos a desactivar el acceso deshabilitando las HBCA default
-
-Ingresamos a la seccion POLITICAS>HBAC y seleccionamos la primera política
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm703.png?raw=true"></p>
-
-Ejecutamos la acción de DESACTIVAR
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm704.png?raw=true"></p>
-
-Repetimos el proceso hasta tener todas las HBAC desactivadas
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm705.png?raw=true"></p>
-
-Antes de agregar cualquier regla, intentemos abrir un nuevo terminal para ingresar al cliente IDM, no deberia tener acceso porque desactivo el acceso default, ahora si intentemos agregar una nueva HBCA
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm705.png?raw=true"></p>
-
-Nombramos la HBCA
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm706.png?raw=true"></p>
-
-Ingresamos a la HBCA
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm707.png?raw=true"></p>
-
-Agregamos en QUIEN el usuario que deseamos que tenga acceso
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm708.png?raw=true"></p>
-
-En acceso agregamos el cliente IDM
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm709.png?raw=true"></p>
-
-Finalmente agregamos los servicios permitidos, por ahora agreguemos todos los que estén disponibles
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm710.png?raw=true"></p>
-
-Ahora intentemos volver a iniciar un terminal al cliente IDM
-
-<h3><strong>Laboratorio</strong></h3>
-<br>Cree una regla de acceso que permita a su usuario personal ingresar a su cliente IDM, valide su correcto uso
-<br>-
-
-<h3><strong>Laboratorio</strong></h3>
-<br>Con lo aprendido en el workshop registre el equipo NODE 192.168.100.(30+X) en su plataforma IDM e instale el servicio vsftpd, recuerde que las reglas HBAC default deben estar desactivadas para efectos del laboratorio.
-<br>El servicio vsftpd debera funcionar con los usuarios del IDM(haga las pruebas con su usuario personal) y solo debera permitir los servicios basicos necesarios para el vsftpd
-
-<br>Instale el servicio VSFTPD en el server NODE
-<br>
-<br># yum install -y vsftpd
-<br># systemctl start vsftpd
-<br># systemctl enable vsftpd
-<br># firewall-cmd --permanent --add-service=ftp
-<br># firewall-cmd --reload
-<br># su - andy.reyes
-<br># touch file01
-<br># touch file02
-<br># touch file03
-<br>
-
-<br>Crear la regla de HBAC con la siguiente estructura
-<br>Quien=usuario de prueba
-<br>Donde=node.domain01.net
-<br>Servicios=vsftpd
-
-
-<br>Pruebas desde otro equipo
-<br>
-<br># yum install -y ftp
-<br># ftp 192.168.100.(30+X)
-<br>Ingresamos las credenciales del usuario de prueba
-<br>Ejecutamos dir o ls
-
+<h3><strong>## Reportes de OpenSCAP</strong></h3>
+Los reportes de openscap nos permiten facilitar el proceso de gestion de lineamientos de seguridad y recomendaciones de entidades internacionales, en el caso de RHEL9, iniciamos implementando un servidor web o ftp para alojar los reportes del client
 ```
-[root@client ~]# ftp 192.168.100.38
-Connected to 192.168.100.38 (192.168.100.38).
-220 (vsFTPd 3.0.3)
-Name (192.168.100.38:root): andy.reyes
-331 Please specify the password.
-Password:
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp> ls
-227 Entering Passive Mode (192,168,100,38,68,88).
-150 Here comes the directory listing.
--rw-rw-r--    1 60001    60001           0 Mar 15 23:55 file01
--rw-rw-r--    1 60001    60001           0 Mar 15 23:55 file02
--rw-rw-r--    1 60001    60001           0 Mar 15 23:55 file03
-226 Directory send OK.
-ftp> exit
+[root@client ~]# yum install -y httpd
+[root@client ~]# systemctl enable httpd --now
+[root@client ~]# firewall-cmd --permanent --add-service=http
+[root@client ~]# firewall-cmd --permanent --add-service=https
+[root@client ~]# firewall-cmd --reload
 ```
 
-<p><br><a href="idm">volver</a></p>
+Ahora instalamos el producto de openscap en en client
+```
+[root@client ~]# yum install -y openscap openscap-scanner scap-security-guide unzip
+```
+
+<p><br><a href="idm.md">volver</a></p>
 
