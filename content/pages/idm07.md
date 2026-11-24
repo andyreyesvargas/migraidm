@@ -74,6 +74,20 @@ Tambien desbloquear con el comando
 # usermod -U student
 ```
 
+Las politicas locales pueden ser modificadas en los siguientes archivos
+```
+# vi /etc/login.defs
+PASS_MAX_DAYS 60
+PASS_MIN_DAYS 1
+PASS_WARN_AGE 7
+
+# vi /etc/security/pwquality.conf
+minlen = 12
+dcredit = 1
+ucredit = 1
+lcredit = 1
+ocredit = 1
+```
 
 
 
