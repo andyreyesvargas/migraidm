@@ -364,6 +364,11 @@ uid=70021(julio.torres) gid=70021(julio.torres) groups=70021(julio.torres),70029
 [root@client home]# mkdir julio.torres
 [root@client home]# echo "Hola Julio" > julio.torres/test.txt
 [root@client home]# chown -R 70021.70021 julio.torres
+
+[root@client ~]# yum install -y vsftpd ftp
+[root@client ~]# systemctl enable vsftpd --now
+[root@client ~]# firewall-cmd --permanent --add-service=ftp
+[root@client ~]# firewall-cmd --reload
 ```
 
 Con los recursos creados, procedemos con la regla HBAC
