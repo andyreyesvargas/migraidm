@@ -138,7 +138,7 @@ Para registrar un cliente IDM usando una contraseña de un solo, debemos crear e
 [root@server ~]# kinit admin
 Password for admin@MIGRACIONES09.GOB.PE:
 [root@server ~]# ipa dnsrecord-add migraciones09.gob.pe client --a-rec 192.168.109.11
-ipa dnsrecord-add 109.168.192.in-addr.arpa. 11 --ptr-rec client.migraciones09.gob.pe.
+[root@server ~]# ipa dnsrecord-add 109.168.192.in-addr.arpa. 11 --ptr-rec client.migraciones09.gob.pe.
   Record name: client
   A record: 192.168.109.11
 [root@server ~]# ipa host-add client.migraciones09.gob.pe --random
