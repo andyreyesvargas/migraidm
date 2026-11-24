@@ -223,7 +223,7 @@ Dictionaries:
 
 Creamos un reporte de openscap del CIS Server level 2
 ```
-oscap xccdf eval --fetch-remote-resources --oval-results \
+[root@client ~]# oscap xccdf eval --fetch-remote-resources --oval-results \
 --profile xccdf_org.ssgproject.content_profile_cis \
 --report /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').html \
 --results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
@@ -238,6 +238,31 @@ De la misma manera podemos crear un reporte ahora asociado al estandard PCI y lo
 --results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
 /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
 ```
+
+Podemos actorar el analisis a lineamientos especificos, por ejemplo, descargamos del ftp del salon el archivo de tailoring que permite escanear solo los lineamientos de AIDE y AUDIT
+```
+[root@client ~]# yum install -y wget
+[root@client ~]# wget ftp://192.168.100.128/openscap/ssg-rhel9-ds-aide-tailoring.xml
+```
+
+Ahora creamos el reporte en la misma ruta web, referenciando el tailoring y al perfil de ese tailoring
+```
+[root@client ~]# oscap info ssg-rhel9-ds-aide-tailoring.xml
+Document type: XCCDF Tailoring
+Imported: 2026-11-24T18:21:23
+Benchmark Hint: /tmp/scap-workbench-FUJUih/ssg-rhel9-ds.xml
+Profiles:
+        Title: CIS Red Hat Enterprise Linux 9 Benchmark for Level 2 - Server [CUSTOMIZED]
+                Id: xccdf_org.ssgproject.content_profile_cis_customized
+
+[root@client ~]# oscap xccdf eval --fetch-remote-resources --oval-results \
+--profile xccdf_org.ssgproject.content_profile_cis_customized \
+--report /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').html \
+--results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
+--tailoring-file ssg-rhel9-ds-aide-tailoring.xml \
+/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+```
+
 
 
 
