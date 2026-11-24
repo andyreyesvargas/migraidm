@@ -136,6 +136,7 @@ Ahora creamos otra política asociada a un nuevo grupo, pero con una mejor prior
 
 <h3><strong>## Reportes de OpenSCAP</strong></h3>
 Los reportes de openscap nos permiten facilitar el proceso de gestion de lineamientos de seguridad y recomendaciones de entidades internacionales, en el caso de RHEL9, iniciamos implementando un servidor web o ftp para alojar los reportes del client
+
 ```
 [root@client ~]# yum install -y httpd
 [root@client ~]# systemctl enable httpd --now
