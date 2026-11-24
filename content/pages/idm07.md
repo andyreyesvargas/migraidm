@@ -105,13 +105,17 @@ A fin de asegurar la autenticación de los usuarios, se requieren definir polít
 Si quisiera saber cual es la politica de contraseñas aplicadas a un usuario especifico, usamos el comando
 `# ipa pwpolicy-show --user=andy.reyes`
 
-Es recomendable definir políticas nuevas aplicadas a grupos de usuarios, usando lo aprendido en clase creamos un grupo operadores e ingresamos al usuario a este grupo.
+Es recomendable definir políticas nuevas aplicadas a grupos de usuarios, usando lo aprendido en clase creamos un grupo para gestionar la nueva politica de contraseñas
+<p align="center"><img src="../images/idm92.png?raw=true"></p>
 
 En la sección de POLITICAS > Politicas de contraseñas agregamos una nueva politica
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm701.png?raw=true"></p>
+<p align="center"><img src="../images/idm93.png?raw=true"></p>
 
 Nombramos la política con una prioridad
-<p align="center"><img src="https://github.com/workshopopennova/tecnologiasredhat/blob/master/images/idm702.png?raw=true"></p>
+<p align="center"><img src="../images/idm94.png?raw=true"></p>
+
+Ingresamos a la politica creada
+<p align="center"><img src="../images/idm95.png?raw=true"></p>
 
 Luego creamos una política de contraseñas mas exigente en relación a la política default
 <br>Vida máxima (días): 45
