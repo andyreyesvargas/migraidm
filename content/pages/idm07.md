@@ -266,6 +266,27 @@ Profiles:
 [root@client ~]# ll /var/www/html/
 ```
 
+Con el reporte inicial customizado, descargamos un script en ansible que pueda resolver la mayoria de las observaciones
+```
+[root@client ~]# wget ftp://192.168.100.128/openscap/ssg-rhel9-ds-aide-tailoring.yaml
+```
+
+Instalamos el componente de ansible y ejecutamos el script
+```
+[root@client ~]# yum install -y ansible-core
+[root@client ~]# ansible-playbook -c local -i localhost, ssg-rhel9-ds-aide-tailoring.yaml
+```
+
+Volvemos a generar un nuevo reporte customizado y verificamos el reporte
+```
+[root@client ~]# oscap xccdf eval --fetch-remote-resources --oval-results \
+--profile xccdf_org.ssgproject.content_profile_cis_customized \
+--report /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').html \
+--results /var/www/html/$(hostname).$(date '+%Y-%m-%d_%H-%M-%S').xml \
+--tailoring-file ssg-rhel9-ds-aide-tailoring.xml \
+/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+[root@client ~]# ll /var/www/html/
+```
 
 
 
