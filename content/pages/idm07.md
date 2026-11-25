@@ -404,7 +404,7 @@ El sustento principal para incluir un aviso legal en el archivo /etc/motd (o en 
 ================================================================================
                         ADVERTENCIA DE SEGURIDAD Y USO
 ================================================================================
-Este sistema es propiedad privada de [NOMBRE DE LA EMPRESA / ENTIDAD]. 
+Este sistema es propiedad privada de la SUPERINTENDENCIA NACIONAL DE MIGRACIONES. 
 El acceso y uso de este servidor está restringido exclusivamente a personal 
 autorizado y para fines estrictamente laborales u operativos.
 
