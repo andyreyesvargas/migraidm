@@ -465,5 +465,37 @@ Please send this file to your support representative.
 
 Este archivo comprimido en tar.xz /var/tmp/sosreport-client-123456-2026-11-25-idohlqc.tar.xz es lo que debemos subir al caso desde la web de redhat y permitira hacer un analisis mas detallado del error
 
+
+<h3><strong>## Laboratorio 1</strong></h3>
+Aplica la siguiente politica de seguridad en el grupo rhel_admins, cree los recursos necesarios para poder aplicarla
+Vida máxima (días): 45
+Vida mínima (horas): 1
+Tamaño del historial: 6
+Clases de caracteres: 1
+Longitud mínima: 9
+Número máximo de fallas: 3
+Falló reajuste de intervalo: 30
+Duración de bloqueo: 900
+
+Cree una nueva politica similar a la anterior pero ahora con Vida máxima (días): 40, créela con una mejor prioridad a la anterior y valide la aplicacion de ella a un usuario que se le aplico la politica anterior
+
+<h3><strong>## Laboratorio 2</strong></h3>
+<br>- Cree un reporte full de openscap para su cliente, use el perfil de CIS Server level 2
+<br>- Cree un reporte full de openscap para su cliente, use el perfil de PCI
+<br>- Cree un reporte full de openscap para su cliente, use el perfil de CIS Server level 2 pero con el tailoring file disponible en el ftp
+<br>- Remedie algunas observaciones del reporte anterior, manualmente o a traves del script de ansible disponible en el ftp
+<br>- Cree un reporte full de openscap para su cliente, use el perfil de CIS Server level 2 con el tailoring file y deberia tener un mejor reporte al anterior
+
+<h3><strong>## Laboratorio 3</strong></h3>
+Modifique el web del client, para que la nueva ruta web sea /reports, copie el contenido de sus reportes a la nueva ruta y mantenga la funcionalidad sin tener que bajar el selinux
+
+<h3><strong>## Laboratorio 4</strong></h3>
+Modifique el MOTD de su client y su server para que se alinee a la normativa peruana
+
+<h3><strong>## Laboratorio 5</strong></h3>
+Cree un sosreport de su client para usarlo en un caso de soporte con el ID 123456
+
+
+
 <p><br><a href="idm.md">volver</a></p>
 
