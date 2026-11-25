@@ -430,7 +430,7 @@ Si usted no cuenta con autorización expresa, desconéctese inmediatamente.
 
 <h3><strong>## Uso del SOS</strong></h3>
 Podemos crear casos en la pagina de Red Hat
-<p align="center"><img src="../images/idm97.png?raw=true"></p>
+<p align="center"><img src="../images/idm98.png?raw=true"></p>
 
 Al ingresar los datos del servidor, la tecnologia, version, detalle del incidente en palabras propias, se creara asignando un IDENTIFICADOR unico, este identificador podra usarse para crear archivos que contengan la info de la configuración del servidor, que redhat usara para diagnosticarlo, para crear este sosreport, vamos al client
 ```
