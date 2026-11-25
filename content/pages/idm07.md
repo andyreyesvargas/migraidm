@@ -429,8 +429,42 @@ Si usted no cuenta con autorización expresa, desconéctese inmediatamente.
 
 
 
+<h3><strong>## Uso del SOS</strong></h3>
+Podemos crear casos en la pagina de Red Hat
+<p align="center"><img src="../images/idm97.png?raw=true"></p>
 
+Al ingresar los datos del servidor, la tecnologia, version, detalle del incidente en palabras propias, se creara asignando un IDENTIFICADOR unico, este identificador podra usarse para crear archivos que contengan la info de la configuración del servidor, que redhat usara para diagnosticarlo, para crear este sosreport, vamos al client
+```
+[root@client ~]# yum install -y sos
+[root@client ~]# sosreport
+Press ENTER to continue, or CTRL-C to quit.
 
+Optionally, please enter the case id that you are generating this report for []: 123456
+
+ Setting up archive ...
+ Setting up plugins ...
+[plugin:ipa] skipped command 'getcert list': required services missing: certmonger.
+[plugin:networking] skipped command 'ip -s macsec show': required kmods missing: macsec.   Use '--allow-system-changes' to enable collection.
+[plugin:networking] skipped command 'ss -peaonmi': required kmods missing: xsk_diag.   Use '--allow-system-changes' to enable collection.
+[plugin:systemd] skipped command 'systemd-resolve --status': required services missing: systemd-resolved.
+[plugin:systemd] skipped command 'systemd-resolve --statistics': required services missing: systemd-resolved.
+ Running plugins. Please wait ...
+
+  Finishing plugins              [Running: subscription_manager]                          ]
+  Finished running plugins
+Creating compressed archive...
+
+Your sosreport has been generated and saved in:
+        /var/tmp/sosreport-client-123456-2026-11-25-idohlqc.tar.xz
+
+ Size   10.76MiB
+ Owner  root
+ sha256 96e342a16f6256f8e02282a5b42c0783e0256ca7b2aba297949cdda66a0b9e06
+
+Please send this file to your support representative.
+```
+
+Este archivo comprimido en tar.xz /var/tmp/sosreport-client-123456-2026-11-25-idohlqc.tar.xz es lo que debemos subir al caso desde la web de redhat y permitira hacer un analisis mas detallado del error
 
 <p><br><a href="idm.md">volver</a></p>
 
