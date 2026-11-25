@@ -288,6 +288,32 @@ Volvemos a generar un nuevo reporte customizado y verificamos el reporte
 [root@client ~]# ll /var/www/html/
 ```
 
+<h3><strong>## Analisis de logs de IDM</strong></h3>
+El sistema creara dentro de la ruta de logs /var/log/dirsrv/ una carpeta con el nombre de la instancia de IDM, dentro de ella se vera los principales logs del sistema, el instructor hara demostraciones de como se va poblando el log con acciones en el idm
+
+```
+[root@server ~]# cd /var/log/dirsrv/
+[root@server dirsrv]# ll
+total 4
+drwxrwx---. 2 dirsrv dirsrv 4096 Nov 25 13:49 slapd-MIGRACIONES09-GOB-PE
+[root@server dirsrv]# cd slapd-MIGRACIONES09-GOB-PE
+[root@server slapd-MIGRACIONES09-GOB-PE]# ll
+total 24648
+-rw-------. 1 dirsrv dirsrv  689435 Nov 25 14:59 access
+-rw-------. 1 dirsrv dirsrv 4846060 Nov 18 22:16 access.20261118-002616
+-rw-------. 1 dirsrv dirsrv 3864775 Nov 21 13:41 access.20261120-134643
+-rw-------. 1 dirsrv dirsrv 2472377 Nov 22 13:41 access.20261121-134644
+-rw-------. 1 dirsrv dirsrv 1125333 Nov 23 13:44 access.20261122-134645
+-rw-------. 1 dirsrv dirsrv 6958524 Nov 24 13:44 access.20261123-134946
+-rw-------. 1 dirsrv dirsrv 4789843 Nov 25 13:44 access.20261124-134947
+-rw-------. 1 dirsrv dirsrv     753 Nov 25 13:49 access.rotationinfo
+-rw-------. 1 dirsrv dirsrv       0 Nov 18 00:26 audit
+-rw-------. 1 dirsrv dirsrv      63 Nov 18 00:26 audit.rotationinfo
+-rw-------. 1 dirsrv dirsrv  276005 Nov 23 12:09 errors
+-rw-------. 1 dirsrv dirsrv      63 Nov 18 00:26 errors.rotationinfo
+-rw-------. 1 dirsrv dirsrv  175295 Nov 23 20:44 security
+-rw-------. 1 dirsrv dirsrv      63 Nov 18 00:26 security.rotationinfo
+```
 
 
 <p><br><a href="idm.md">volver</a></p>
