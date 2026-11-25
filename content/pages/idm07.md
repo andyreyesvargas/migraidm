@@ -399,7 +399,33 @@ El sustento principal para incluir un aviso legal en el archivo /etc/motd (o en 
 <br> - Acreditación del dolo (intención delictiva). En legislaciones penales sobre ciberdelincuencia —como la Ley N.º 30096 (Ley de Delitos Informáticos en Perú) o el Convenio de Budapest— el delito de acceso ilícito requiere que el agente actúe de forma deliberada e ilegítima. Un aviso visible prueba que el usuario fue advertido de la restricción y decidió continuar.
 <br> - Consentimiento informado. Si un empleado o proveedor accede al servidor tras leer las políticas de uso y monitoreo, se configura una aceptación tácita de las condiciones de supervisión de la empresa.
 
+```
+[root@client ~]# vi /etc/motd
+================================================================================
+                        ADVERTENCIA DE SEGURIDAD Y USO
+================================================================================
+Este sistema es propiedad privada de [NOMBRE DE LA EMPRESA / ENTIDAD]. 
+El acceso y uso de este servidor está restringido exclusivamente a personal 
+autorizado y para fines estrictamente laborales u operativos.
 
+AVISO LEGAL Y MONITOREO (PERÚ):
+1. Todo acceso, comando ejecutado, transferencia de archivos y actividad en 
+   este sistema es monitoreado, auditado y registrado de forma continua.
+2. Al continuar con esta sesión, usted reconoce que no existe expectativa de 
+   privacidad sobre las operaciones realizadas en este entorno y otorga su 
+   consentimiento expreso para la supervisión y auditoría de sus acciones, 
+   conforme a las políticas internas de seguridad de la información.
+3. El acceso no autorizado, la excedencia de privilegios, la alteración de 
+   datos o cualquier uso indebido constituyen delitos sancionados penalmente 
+   bajo la Ley N.º 30096 (Ley de Delitos Informáticos del Perú) y normas 
+   conexas, además de acarrear sanciones civiles o laborales.
+4. Si este sistema aloja información personal, su tratamiento está sujeto 
+   a estricto deber de confidencialidad bajo la Ley N.º 29733 (Ley de 
+   Protección de Datos Personales).
+
+Si usted no cuenta con autorización expresa, desconéctese inmediatamente.
+================================================================================
+```
 
 
 
