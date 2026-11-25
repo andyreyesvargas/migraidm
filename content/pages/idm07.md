@@ -315,6 +315,87 @@ total 24648
 -rw-------. 1 dirsrv dirsrv      63 Nov 18 00:26 security.rotationinfo
 ```
 
+<h3><strong>## Asegurando aplicaciones con SELinux</strong></h3>
+La seguridad de las aplicaciones puede ser mejorara usando SELinux como una capa mas de seguridad que evite intrusión o accesos no autorizados, incluso errores de configuración, para este ejemplo vamos a considerar una aplicacion nueva basa en apache/httpd
+
+La aplicacion basada en apache tiene la particularidad que debera implementarse sobre la carpeta reports y sus reportes seran accedidos via web
+
+En el client como ya tenemos un apache, vamos a migrar los reportes de openscap a la nueva ruta
+```
+[root@client ~]# mkdir /reports
+[root@client ~]# vi /etc/httpd/conf/httpd.conf
+DocumentRoot "/reports"
+<Directory "/reports">
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+[root@client ~]# systemctl restart httpd
+```
+
+vamos a copiar algunos reportes de /var/www/html a /reports
+```
+[root@client ~]# cp /var/www/html/*.html /reports/
+[root@client ~]# ll /reports/
+total 145284
+-rw-r--r--. 1 root root  7470896 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_17-02-29.html
+-rw-r--r--. 1 root root 70144466 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_17-05-15.html
+-rw-r--r--. 1 root root 70144466 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_18-18-12.html
+-rw-r--r--. 1 root root   510903 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_18-25-34.html
+-rw-r--r--. 1 root root   490050 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-25_13-14-45.html
+```
+
+Intentamos ver por navegador un reporte antiguo
+<p align="center"><img src="../images/idm96.png?raw=true"></p>
+
+Como /reports no es parte de una estructura de SELinux, el sistema previene el acceso, si desactivamos temporalmente el SELinux, volver a hacer la prueba
+```
+[root@client ~]# setenforce 0
+```
+<p align="center"><img src="../images/idm97.png?raw=true"></p>
+
+Como el objetivo no es desactivar SELinux sino configurarlo para que trabaje con la nueva ruta de la aplicacion, lo reactivamos
+```
+[root@client ~]# setenforce 1
+```
+
+Ejecutamos el comando que nos permite ver como estan etiquetados los archivos desde la perspectiva de SELinux
+```
+[root@client ~]# ls -lZ /var/www/html/
+```
+
+Vemos que los reportes antiguos estan etiquetas bajo el contexto httpd_sys_content_t, ahora verificamos en /reports
+```
+[root@client ~]# ls -lZ /reports/
+```
+
+Vemos que el reports el contexto aplicado es default_t, por eso no se permite el acceso, el servicio http necesita el contexto httpd_sys_content_t en sus archivos, la mayoria de los contextos como default_t se consideran inseguros, modificamos la carpeta /reports para que todo lo nuevo creada en ella tenga httpd_sys_content_t
+```
+[root@client ~]# semanage fcontext -a -t httpd_sys_content_t '/reports(/.*)?'
+[root@client ~]# semanage fcontext -l | grep reports
+```
+
+Aplicamos el nuevo contexto a la carpeta
+```
+[root@client ~]# restorecon -Rv /reports/
+[root@client ~]# touch /reports/test.html
+[root@client ~]# ls -lZ /reports/
+total 145284
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0  7470896 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_17-02-29.html
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0 70144466 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_17-05-15.html
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0 70144466 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_18-18-12.html
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0   510903 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-24_18-25-34.html
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0   490050 Nov 25 15:52 client.migraciones09.gob.pe.2026-11-25_13-14-45.html
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0        0 Nov 25 16:04 test.html
+```
+
+Volvemos a revisar el reporte y deberíamos recuperar el acceso
+<p align="center"><img src="../images/idm97.png?raw=true"></p>
+
+
+
+
+
 
 <p><br><a href="idm.md">volver</a></p>
 
