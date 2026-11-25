@@ -428,7 +428,6 @@ Si usted no cuenta con autorización expresa, desconéctese inmediatamente.
 ```
 
 
-
 <h3><strong>## Uso del SOS</strong></h3>
 Podemos crear casos en la pagina de Red Hat
 <p align="center"><img src="../images/idm97.png?raw=true"></p>
