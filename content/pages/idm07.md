@@ -395,9 +395,9 @@ Volvemos a revisar el reporte y deberíamos recuperar el acceso
 <h3><strong>## Uso del MOTD</strong></h3>
 El sustento principal para incluir un aviso legal en el archivo /etc/motd (o en banners previos al inicio de sesión) radica en eliminar la expectativa de privacidad del usuario, demostrar el consentimiento de monitoreo y acreditar la intención delictiva en caso de un acceso no autorizado. Los sustentos juridicos principales son los siguientes:
 
-<br>Eliminación de la expectativa de privacidad. Al advertir explícitamente que el sistema es de uso exclusivo para personal autorizado y que toda actividad es monitoreada y registrada, se evita que un infractor (interno o externo) alegue violación a su intimidad o secreto de las comunicaciones durante una auditoría forense o juicio.
-<br>Acreditación del dolo (intención delictiva). En legislaciones penales sobre ciberdelincuencia —como la Ley N.º 30096 (Ley de Delitos Informáticos en Perú) o el Convenio de Budapest— el delito de acceso ilícito requiere que el agente actúe de forma deliberada e ilegítima. Un aviso visible prueba que el usuario fue advertido de la restricción y decidió continuar.
-<br>Consentimiento informado. Si un empleado o proveedor accede al servidor tras leer las políticas de uso y monitoreo, se configura una aceptación tácita de las condiciones de supervisión de la empresa.
+<br> - Eliminación de la expectativa de privacidad. Al advertir explícitamente que el sistema es de uso exclusivo para personal autorizado y que toda actividad es monitoreada y registrada, se evita que un infractor (interno o externo) alegue violación a su intimidad o secreto de las comunicaciones durante una auditoría forense o juicio.
+<br> - Acreditación del dolo (intención delictiva). En legislaciones penales sobre ciberdelincuencia —como la Ley N.º 30096 (Ley de Delitos Informáticos en Perú) o el Convenio de Budapest— el delito de acceso ilícito requiere que el agente actúe de forma deliberada e ilegítima. Un aviso visible prueba que el usuario fue advertido de la restricción y decidió continuar.
+<br> - Consentimiento informado. Si un empleado o proveedor accede al servidor tras leer las políticas de uso y monitoreo, se configura una aceptación tácita de las condiciones de supervisión de la empresa.
 
 
 
