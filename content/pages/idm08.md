@@ -164,19 +164,44 @@ f++++++++++++++++: /was/file06
 El servicio de auditoria de linux (audit) permite vigilar el acceso a ciertos ficheros y directorios sobre los que deseamos tener control.
 
 Verificamos las reglas de auditoria activadas
-<br>`# auditctl -l`
+```
+[root@client ~]# auditctl -l
+No rules
+```
 
 Creamos un archivo para nuestra auditoria
-<br>`# touch /root/file01.txt`
+```
+[root@client ~]# touch /root/file01.txt
+```
 
 Creamos una regla de auditoria para el archivo
-<br>`# auditctl -w /root/file01.txt -p wa -k file01_changes`
+```
+[root@client ~]# auditctl -w /root/file01.txt -p wa -k file01_changes
+```
 
 Volvemos a validar la lista de reglas
-<br>`# auditctl -l`
+```
+[root@client ~]# auditctl -l
+-w /root/file01.txt -p wa -k file01_changes
+```
 
 Realizamos algunos cambios en el archivo y verificamos la auditoria con:
-<br>`# ausearch -k file01_changes`
+```
+[root@client ~]# echo "hola Andy" > /root/file01.txt
+[root@client ~]# ausearch -k file01_changes
+----
+time->Thu Nov 26 15:17:28 2026
+type=PROCTITLE msg=audit(1795724248.713:163): proctitle=617564697463746C002D77002F726F6F742F66696C6530312E747874002D70007761002D6B0066696C6530315F6368616E676573
+type=SYSCALL msg=audit(1795724248.713:163): arch=c000003e syscall=44 success=yes exit=1088 a0=4 a1=7ffff2d1e4d0 a2=440 a3=0 items=0 ppid=1922 pid=1950 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=3 comm="auditctl" exe="/usr/sbin/auditctl" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
+type=CONFIG_CHANGE msg=audit(1795724248.713:163): auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 op=add_rule key="file01_changes" list=4 res=1
+----
+time->Thu Nov 26 15:18:05 2026
+type=PROCTITLE msg=audit(1795724285.021:164): proctitle="-bash"
+type=PATH msg=audit(1795724285.021:164): item=1 name="/root/file01.txt" inode=17505168 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:admin_home_t:s0 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1795724285.021:164): item=0 name="/root/" inode=16777351 dev=fd:00 mode=040550 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:admin_home_t:s0 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1795724285.021:164): cwd="/root"
+type=SYSCALL msg=audit(1795724285.021:164): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=55d9258899a0 a2=241 a3=1b6 items=2 ppid=1921 pid=1922 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=3 comm="bash" exe="/usr/bin/bash" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="file01_changes"
+```
 
 Podemos realizar el mismo procedimiento para carpetas
 <br>`# mkdir /folder01`
