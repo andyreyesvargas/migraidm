@@ -204,16 +204,50 @@ type=SYSCALL msg=audit(1795724285.021:164): arch=c000003e syscall=257 success=ye
 ```
 
 Podemos realizar el mismo procedimiento para carpetas
-<br>`# mkdir /folder01`
-<br>`# auditctl -w /folder01 -p wa -k folder01_changes`
-<br>`# ausearch -k folder01_changes`
-<br>`# touch /folder01/file01`
-<br>`# ausearch -k folder01_changes`
+```
+[root@client ~]# mkdir /folder01
+[root@client ~]# auditctl -w /folder01 -p wa -k folder01_changes
+[root@client ~]# auditctl -l
+-w /root/file01.txt -p wa -k file01_changes
+-w /folder01 -p wa -k folder01_changes
+```
 
-
-<h3><strong>Laboratorio</strong></h3>
-<br>Implemente el servicio de auditoria de un archivo y de una carpeta usando como procedimiento el ejemplo del instructor
-
+Generamos cambios en la carpeta y analizamos la salida
+```
+[root@client ~]#  touch /folder01/file01
+[root@client ~]#  touch /folder01/file02
+[root@client ~]#  touch /folder01/file03
+[root@client ~]# ausearch -k folder01_changes
+----
+time->Thu Nov 26 15:22:34 2026
+type=PROCTITLE msg=audit(1795724554.080:165): proctitle=617564697463746C002D77002F666F6C6465723031002D70007761002D6B00666F6C64657230315F6368616E676573
+type=PATH msg=audit(1795724554.080:165): item=0 name="/folder01" inode=34502797 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:default_t:s0 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1795724554.080:165): cwd="/root"
+type=SOCKADDR msg=audit(1795724554.080:165): saddr=100000000000000000000000
+type=SYSCALL msg=audit(1795724554.080:165): arch=c000003e syscall=44 success=yes exit=1084 a0=4 a1=7ffec20d2910 a2=43c a3=0 items=1 ppid=1922 pid=1958 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=3 comm="auditctl" exe="/usr/sbin/auditctl" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
+type=CONFIG_CHANGE msg=audit(1795724554.080:165): auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 op=add_rule key="folder01_changes" list=4 res=1
+----
+time->Thu Nov 26 15:23:12 2026
+type=PROCTITLE msg=audit(1795724592.999:166): proctitle=746F756368002F666F6C64657230312F66696C653031
+type=PATH msg=audit(1795724592.999:166): item=1 name="/folder01/file01" inode=34502798 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:default_t:s0 nametype=CREATE cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1795724592.999:166): item=0 name="/folder01/" inode=34502797 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:default_t:s0 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1795724592.999:166): cwd="/root"
+type=SYSCALL msg=audit(1795724592.999:166): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=7fff6201669e a2=941 a3=1b6 items=2 ppid=1922 pid=1962 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=3 comm="touch" exe="/usr/bin/touch" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="folder01_changes"
+----
+time->Thu Nov 26 15:23:15 2026
+type=PROCTITLE msg=audit(1795724595.567:167): proctitle=746F756368002F666F6C64657230312F66696C653032
+type=PATH msg=audit(1795724595.567:167): item=1 name="/folder01/file02" inode=34502799 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:default_t:s0 nametype=CREATE cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1795724595.567:167): item=0 name="/folder01/" inode=34502797 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:default_t:s0 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1795724595.567:167): cwd="/root"
+type=SYSCALL msg=audit(1795724595.567:167): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=7ffcc867269e a2=941 a3=1b6 items=2 ppid=1922 pid=1963 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=3 comm="touch" exe="/usr/bin/touch" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="folder01_changes"
+----
+time->Thu Nov 26 15:23:16 2026
+type=PROCTITLE msg=audit(1795724596.543:168): proctitle=746F756368002F666F6C64657230312F66696C653033
+type=PATH msg=audit(1795724596.543:168): item=1 name="/folder01/file03" inode=34502800 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:default_t:s0 nametype=CREATE cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1795724596.543:168): item=0 name="/folder01/" inode=34502797 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=unconfined_u:object_r:default_t:s0 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1795724596.543:168): cwd="/root"
+type=SYSCALL msg=audit(1795724596.543:168): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=7ffc4c12869e a2=941 a3=1b6 items=2 ppid=1922 pid=1964 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=3 comm="touch" exe="/usr/bin/touch" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="folder01_changes"
+```
 
 <h3><strong>## Configurar syslog</strong></h3>
 
@@ -257,6 +291,10 @@ Validemos el archivo `/var/log/messages` del servidor IDM y debe incluir tambié
 
 
 <h3><strong>Laboratorio 1</strong></h3>
-<br>Implemente el servicio de AIDE usando como procedimiento el ejemplo del instructor
+<br>Implemente el servicio de AIDE usando como procedimiento el ejemplo del instructor, creando una carpeta /oracle excluyendo el monitoreo de la subcarpeta /oracle/log, genere contenido en ambas carpetas para validar
+
+<h3><strong>Laboratorio 2</strong></h3>
+<br>Implemente el servicio de auditoria de un archivo y de una carpeta usando como procedimiento el ejemplo del instructor
+
 
 <p><br><a href="idm.md">volver</a></p>
