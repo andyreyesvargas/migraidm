@@ -28,25 +28,27 @@ La recuperación de la clave de admin se realiza con un terminal de linux como r
 
 El respaldo de la plataforma puede hacerse con un script automatizado
 ```
-[root@idm ~]# ipa-backup
-Preparing backup on idm.domain08.net
+[root@server ~]# ipa-backup
+Preparing backup on server.migraciones09.gob.pe
+Local roles match globally used roles, proceeding.
 Stopping IPA services
-Backing up ipaca in DOMAIN08-NET to LDIF
-Backing up userRoot in DOMAIN08-NET to LDIF
-Backing up DOMAIN08-NET
+Backing up ipaca in MIGRACIONES09-GOB-PE to LDIF
+Backing up userRoot in MIGRACIONES09-GOB-PE to LDIF
+Backing up MIGRACIONES09-GOB-PE
 Backing up files
 Starting IPA service
-Backed up to /var/lib/ipa/backup/ipa-full-2023-03-15-21-55-55
+Backed up to /var/lib/ipa/backup/ipa-full-2026-11-26-18-39-06
 The ipa-backup command was successful
+
 ```
 
 El script de respaldo generara una carpeta con toda la información necesaria para restaurar la plataforma, por ello podemos borrar algunos elementos del IDM como usuarios o equipos, recuerde que para el procedimiento de restore debera contar con la contraseña de Directory Manager
 
 ```
-[root@idm ~]# ipa-restore /var/lib/ipa/backup/ipa-full-2023-03-15-21-55-55
-Directory Manager (existing master) password: *******
+[root@server ~]# ipa-restore /var/lib/ipa/backup/ipa-full-2026-11-26-18-39-06
+Directory Manager (existing master) password:
 
-Preparing restore from /var/lib/ipa/backup/ipa-full-2023-03-15-21-55-55 on idm.domain08.net
+Preparing restore from /var/lib/ipa/backup/ipa-full-2026-11-26-18-39-06 on server.migraciones09.gob.pe
 Performing FULL restore from FULL backup
 Temporary setting umask to 022
 Restoring data will overwrite existing live data. Continue to restore? [no]: yes
@@ -59,12 +61,13 @@ Stopping IPA services
 Systemwide CA database updated.
 Restoring files
 Systemwide CA database updated.
-Restoring from userRoot in DOMAIN08-NET
-Restoring from ipaca in DOMAIN08-NET
+Restoring from userRoot in MIGRACIONES09-GOB-PE
+Restoring from ipaca in MIGRACIONES09-GOB-PE
 Restarting GSS-proxy
 Starting IPA services
 Restarting SSSD
 Restarting oddjobd
+Restarting IPA services
 Restoring umask to 18
 The ipa-restore command was successful
 ```
