@@ -127,8 +127,7 @@ Es una buena practica actualizar la informacion de forma programada
 00 00 * * * root /usr/sbin/aide --update
 ```
 
-<h3><strong>Laboratorio</strong></h3>
-<br>Implemente el servicio de AIDE usando como procedimiento el ejemplo del instructor
+
 
 
 <h3><strong>## Configurar AUDIT</strong></h3>
@@ -199,4 +198,11 @@ Validemos el archivo `/var/log/messages` del servidor IDM y debe incluir tambié
 
 <h3><strong>Laboratorio</strong></h3>
 <br>Implemente el syslog server en su estación IDM Server y el cliente syslog en su estación IDM Cliente, genere acciones que genere errores o denegacion de permisos para auditarlos
-<p><br><a href="idm">volver</a></p>
+
+
+
+
+<h3><strong>Laboratorio 1</strong></h3>
+<br>Implemente el servicio de AIDE usando como procedimiento el ejemplo del instructor
+
+<p><br><a href="idm.md">volver</a></p>
