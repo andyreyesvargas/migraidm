@@ -127,7 +127,36 @@ Es una buena practica actualizar la informacion de forma programada
 00 00 * * * root /usr/sbin/aide --update
 ```
 
+Vamos a crear un recurso de monitoreo para la carpeta /was el cual debera ser montoreado excluyendo la carpeta /was/log, para ello agregamos los recursos a aide.conf
+```
+[root@client ~]# mkdir /was
+[root@client ~]# mkdir /was/log
+[root@client ~]# vi /etc/aide.conf
+/was   CONTENT_EX
+!/was/log
+```
 
+Actualizamos la base de datos y generamos contenido en todos los recursos
+```
+[root@client ~]# aide --update
+[root@client ~]# touch /was/file01
+[root@client ~]# touch /was/file02
+[root@client ~]# touch /was/file03
+[root@client ~]# touch /was/file04
+[root@client ~]# touch /was/file05
+[root@client ~]# touch /was/file06
+[root@client ~]# touch /was/log/log01
+[root@client ~]# touch /was/log/log02
+[root@client ~]# touch /was/log/log03
+[root@client ~]# aide --check | grep was
+d++++++++++++++++: /was
+f++++++++++++++++: /was/file01
+f++++++++++++++++: /was/file02
+f++++++++++++++++: /was/file03
+f++++++++++++++++: /was/file04
+f++++++++++++++++: /was/file05
+f++++++++++++++++: /was/file06
+```
 
 
 <h3><strong>## Configurar AUDIT</strong></h3>
