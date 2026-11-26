@@ -21,7 +21,7 @@
 La recuperación de la clave de admin se realiza con un terminal de linux como root, siendo necesario la clave de Directory Manager el cual es un dato de instalación que debe ser documentado, para ello usamos el siguiente comando en el caso del domain01 (adaptar a su dominio)
 
 ```
-# ldappasswd -D "cn=Directory Manager" -W -s <new_admin_password> -H ldaps://idm.domain01.net uid=admin,cn=users,cn=accounts,dc=domain01,dc=net
+[root@server ~]# ldappasswd -D "cn=Directory Manager" -W -s <nueva contraseña> -H ldaps://server.migraciones09.gob.pe uid=admin,cn=users,cn=accounts,dc=migraciones09,dc=gob,dc=pe
 ```
 
 <h3><strong>## Respaldo y recuperación de plataforma</strong></h3>
