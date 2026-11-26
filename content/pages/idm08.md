@@ -33,31 +33,99 @@
 AIDE ( Advanced Intrusion Detection Environment ) es una herramienta de detección de intrusos de código abierto, pequeña pero potente, que utiliza reglas predefinidas para verificar la integridad de archivos y directorios en sistemas operativos tipo Unix como Linux
 
 Para configurar AIDE instalamos el rpm
-<br>`# dnf -y install aide`
-
-En caso quisieramosmodificar la configuracion editamos el archivo `/etc/aide.conf`
+```
+[root@client ~]# yum install -y aide
+```
+En caso quisiéramos modificar la configuración editamos el archivo `/etc/aide.conf`
 
 Para inicializar la base de datos 
-<br>`# aide --init`
-<br>`# cp -p /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz`
+```
+[root@client ~]# aide --init
+[root@client ~]# cp -p /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+```
 
 Para verificar la auditorio
-<br>`# aide --check`
+```
+[root@client ~]# aide --check | grep etc
+```
 
 Intentamos generar cambios en el sistema
-<br>`# touch /etc/file01`
-<br>`# touch /etc/file02`
-<br>`# touch /etc/file03`
+```
+[root@client ~]# touch /etc/file01
+[root@client ~]# touch /etc/file02
+[root@client ~]# touch /etc/file03
+```
 
 Volvemos a verificar
-<br>`# aide --check`
+```
+[root@client ~]# aide --check | grep etc
+f++++++++++++++++: /etc/file01
+f++++++++++++++++: /etc/file02
+f++++++++++++++++: /etc/file03
+
+[root@client ~]# aide --check
+Start timestamp: 2026-11-26 10:46:58 -0500 (AIDE 0.16)
+AIDE found differences between database and filesystem!!
+
+Summary:
+  Total number of entries:      46350
+  Added entries:                3
+  Removed entries:              0
+  Changed entries:              1
+
+---------------------------------------------------
+Added entries:
+---------------------------------------------------
+
+f++++++++++++++++: /etc/file01
+f++++++++++++++++: /etc/file02
+f++++++++++++++++: /etc/file03
+
+---------------------------------------------------
+Changed entries:
+---------------------------------------------------
+
+f   ...     C... : /var/log/audit/audit.log
+
+---------------------------------------------------
+Detailed information about changes:
+---------------------------------------------------
+
+File: /var/log/audit/audit.log
+  SHA512   : WCyjpwt5WvhNQysqpUGmcQN9t+YjhKJ0 | NyNUA5EufvB/BpWLQfqHnj4Y/lU0bBuk
+             Hto0NoMozwphUN5SMp+GInMZRZCQm3i6 | f5G+3m92prsimqjPhdKNBqsV4yeAwRw7
+             S2TR+XEREzen08S4eDODNA==         | pbtPN4JYBZWwaen7S1Koxg==
+
+
+---------------------------------------------------
+The attributes of the (uncompressed) database(s):
+---------------------------------------------------
+
+/var/lib/aide/aide.db.gz
+  MD5      : jxaam5jMnCMl7XqWMhdomQ==
+  SHA1     : 2N2ZpTDSbdFy2tPVvn+JKmScG5w=
+  RMD160   : ekJ5ODrSzcMvDT8DiEgA7k++bgk=
+  TIGER    : yrwKriyMlv9aj5P2hb70N5JT/IDvZOby
+  SHA256   : psjNkcl+YUjlJ8YtC+vWT6cOsSyQQbNp
+             EvoHNjjoaTA=
+  SHA512   : pqoywdZgu9K7NZjfYsMoXWx9KjrqckvQ
+             0Zye88FaV2T4d9diTQqogXVBLonwCosK
+             GZr/5AJMnZyf6DFI3wDZpw==
+
+
+End timestamp: 2026-11-26 10:47:04 -0500 (run time: 0m 6s)
+```
 
 En caso no veamos cambios, podemos forzar una actualización con
-<br>`# aide --update`
+```
+[root@client ~]# aide --update
+```
 
 Es una buena practica actualizar la informacion de forma programada
-<br>`# vi /etc/cron.d/aide`
-<br>`00 00 * * * root /usr/sbin/aide --update`
+```
+[root@client ~]# vi /etc/cron.d/aide
+00 00 * * * root /usr/sbin/aide --update
+```
 
 <h3><strong>Laboratorio</strong></h3>
 <br>Implemente el servicio de AIDE usando como procedimiento el ejemplo del instructor
