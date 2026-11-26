@@ -178,6 +178,14 @@ Creamos una regla de auditoria para el archivo
 ```
 [root@client ~]# auditctl -w /root/file01.txt -p wa -k file01_changes
 ```
+```
+• -p <permisos>: Especifica qué acciones registrar. Se pueden combinar:
+	• r: Lectura (read).
+	• w: Escritura (write).
+	• x: Ejecución (execute).
+	• a: Cambio de atributos o metadatos (attribute change, como chmod o chown).
+```
+
 
 Volvemos a validar la lista de reglas
 ```
