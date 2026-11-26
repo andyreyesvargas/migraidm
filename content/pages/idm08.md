@@ -386,7 +386,7 @@ drwx--x---. 2 root root 69 Nov 26 18:05 server
 
 <h3><strong>Laboratorio 3</strong></h3>
 <br>Implemente el syslog server en su estación IDM client y el cliente syslog en su estación IDM Server, debe audir al menos los siguientes logs
-<br>/var/log/dirsrv/slapd-<INSTANCIA DE IDM SERVER>/access
+<br>/var/log/dirsrv/slapd-INSTANCIA_IDM_SERVER/access
 <br>/var/log/secure
 <br>/var/log/messages
 
