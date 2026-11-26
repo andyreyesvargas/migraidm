@@ -270,39 +270,125 @@ A pesar que se configura la rotación de logs para la depuratorio, existe la nec
 
 <h3><strong>## Configurar syslog como servidor</strong></h3>
 
-Para implementar su propio servidor syslog use el mismo paquete rsyslog y el mismo archivo de configuración en el servidor IDM
-<br>`# vi /etc/rsyslog.conf`
+Para implementar su propio servidor syslog use el mismo paquete rsyslog, tanto client como server usan el mismo servicio, para el ejercicio las funciones seran las siguientes:
 
-Descomente las linea de UDP
-<br>`module(load="imudp") # needs to be done just once`
-<br>`input(type="imudp" port="514")`
+Syslog Server = client de IDM
+Syslog Client = server de IDM
 
-Abra los puertos de firewall
-<br>`# firewall-cmd --permanent --add-por=514/udp`
-<br>`# firewall-cmd --reload`
+Considerando que solo queremos recibir los siguientes LOGs de los posible clients
+```
+/var/log/dirsrv/slapd-MIGRACIONES09-GOB-PE/access
+/var/log/secure
+/var/log/messages
+```
 
-Reinicie el servicio
-<br>`# systemctl restart rsyslog`
+Ahora configuramos el syslogserver
+```
+[root@client ~]# vi /etc/rsyslog.d/remote-server.conf
+# --- 1. Módulos de entrada (TCP recomendado para no perder logs de auditoría/LDAP) ---
+module(load="imtcp" MaxSessions="500")
+module(load="imudp")
 
-Ahora en el client IDM configure el servicio rsyslog para que apunte a su propio servidor syslog
-<br>`# vi /etc/rsyslog.conf`
-<br>`*.* @192.168.0.171:514`
-<br>`# systemctl restart rsyslog`
-<br>`# logger prueba`
+# --- 2. Plantillas de destino por tipo de log ---
+template(name="DirsrvAccessLog" type="string" string="/var/log/remote/%HOSTNAME%/dirsrv-access.log")
+template(name="SecureLog"       type="string" string="/var/log/remote/%HOSTNAME%/secure.log")
+template(name="MessagesLog"     type="string" string="/var/log/remote/%HOSTNAME%/messages.log")
 
-Validemos el archivo `/var/log/messages` del servidor IDM y debe incluir también los eventos del cliente IDM
+# --- 3. Reglas de clasificación (Ruleset) ---
+ruleset(name="RecepcionRemota") {
 
-<h3><strong>Laboratorio</strong></h3>
-<br>Implemente el syslog server en su estación IDM Server y el cliente syslog en su estación IDM Cliente, genere acciones que genere errores o denegacion de permisos para auditarlos
+    # A) Logs de 389-DS / FreeIPA (identificados por el Tag enviado desde el cliente)
+    if ($programname == "dirsrv-access" or $syslogtag contains "dirsrv-access") then {
+        action(type="omfile" dynaFile="DirsrvAccessLog" dirCreateMode="0750" fileCreateMode="0640")
+        stop
+    }
+
+    # B) Logs de seguridad (/var/log/secure -> facility authpriv o auth)
+    if ($syslogfacility-text == "authpriv" or $syslogfacility-text == "auth") then {
+        action(type="omfile" dynaFile="SecureLog" dirCreateMode="0750" fileCreateMode="0640")
+        stop
+    }
+
+    # C) Resto de logs generales del sistema (/var/log/messages)
+    action(type="omfile" dynaFile="MessagesLog" dirCreateMode="0750" fileCreateMode="0640")
+    stop
+}
+
+# --- 4. Vincular puertos al Ruleset ---
+input(type="imtcp" port="514" ruleset="RecepcionRemota")
+input(type="imudp" port="514" ruleset="RecepcionRemota")
+```
+
+Creamos la carpeta de logs remotos para distinguirlos de los logs locales y habilitamos el servicio
+```
+[root@client ~]# mkdir -p /var/log/remote
+[root@client ~]# chmod 750 /var/log/remote
+[root@client ~]# systemctl restart rsyslog
+[root@client ~]# rsyslogd -N1
+rsyslogd: version 8.2310.0-4.el9, config validation run (level 1), master config /etc/rsyslog.conf
+rsyslogd: End of config validation run. Bye.
+[root@client ~]# firewall-cmd --permanent --add-port=514/tcp
+[root@client ~]# firewall-cmd --permanent --add-port=514/udp
+[root@client ~]# firewall-cmd --reload
+```
 
 
+Ahora configuramos el cliente syslog para que los envie al syslog server, reemplazar la IP del syslog server al final del archivo
+```
+[root@server ~]# vi /etc/rsyslog.d/remote-client.conf
+# Cargar módulo para leer archivos de texto plano (dirsrv)
+module(load="imfile" PollingInterval="2")
 
+# Leer el log de acceso de 389-DS / FreeIPA y etiquetarlo como "dirsrv-access"
+input(
+    type="imfile"
+    File="/var/log/dirsrv/slapd-MIGRACIONES09-GOB-PE/access"
+    Tag="dirsrv-access"
+    Severity="info"
+    Facility="local0"
+)
+
+# Reenviar todo (dirsrv-access, authpriv/secure y messages) por TCP (@@) al servidor Syslog
+*.* @@192.168.109.11:514
+```
+
+Reiniciarnos el servicio
+```
+[root@server ~]# systemctl restart rsyslog
+[root@server ~]# rsyslogd -N1
+rsyslogd: version 8.2510.0-2.el9, config validation run (level 1), master config /etc/rsyslog.conf
+rsyslogd: End of config validation run. Bye.
+```
+
+Podemos generar eventos como reiniciar el idm, cambiar a un usuario y ejecutar sudos
+```
+[root@server ~]# ipactl restart
+[root@server ~]# su - jaime.zamudio
+[jaime.zamudio@server ~]$ touch test
+[jaime.zamudio@server ~]$ sudo chown root.root test
+[jaime.zamudio@server ~]$ exit
+```
+Verificamos los nuevos logs en el syslog server
+```
+[root@client ~]# ll /var/log/remote/
+drwx--x---. 2 root root 69 Nov 26 18:05 server
+[root@client ~]# ll /var/log/remote/server/
+-rw-------. 1 root root 315345 Nov 26 18:08 dirsrv-access.log
+-rw-------. 1 root root 104479 Nov 26 18:08 messages.log
+-rw-------. 1 root root   3053 Nov 26 18:08 secure.log
+```
 
 <h3><strong>Laboratorio 1</strong></h3>
 <br>Implemente el servicio de AIDE usando como procedimiento el ejemplo del instructor, creando una carpeta /oracle excluyendo el monitoreo de la subcarpeta /oracle/log, genere contenido en ambas carpetas para validar
 
 <h3><strong>Laboratorio 2</strong></h3>
 <br>Implemente el servicio de auditoria de un archivo y de una carpeta usando como procedimiento el ejemplo del instructor
+
+<h3><strong>Laboratorio 3</strong></h3>
+<br>Implemente el syslog server en su estación IDM client y el cliente syslog en su estación IDM Server, debe audir al menos los siguientes logs
+<br>/var/log/dirsrv/slapd-<INSTANCIA DE IDM SERVER>/access
+<br>/var/log/secure
+<br>/var/log/messages
 
 
 <p><br><a href="idm.md">volver</a></p>
