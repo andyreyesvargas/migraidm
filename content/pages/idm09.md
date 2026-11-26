@@ -95,19 +95,18 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 Antes de realizar cualquier mantenimiento se sugiere realizar respaldos de la plataforma a nivel de VM o una solucion de backup externa. Modificamos para que ahora apunte al RHEL 8.3
 ```
-# vi /etc/yum.repos.d/rhel.repo
-[BaseOS]
-name=BaseOS
+[root@server ~]# vi /etc/yum.repos.d/rhel99.repo
+[baseos99]
+name=baseos99
+baseurl=ftp://ftp.migraciones.gob.pe/rhel99/BaseOS
 enabled=1
-baseurl=ftp://192.168.100.203/rhel83/BaseOS
-gpgcheck=1
+gpgheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-###
-[AppStream]
-name=AppStream
+[appstream99]
+name=appstream99
+baseurl=ftp://ftp.migraciones.gob.pe/rhel99/AppStream
 enabled=1
-baseurl=ftp://192.168.100.203/rhel83/AppStream
-gpgcheck=1
+gpgheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 ```
 
