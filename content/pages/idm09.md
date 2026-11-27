@@ -212,11 +212,12 @@ Finalmente en caso sea necesario, reiniciar el servidor(Actualizaciones de Kerne
 Volver a validar el versionamiento del IDM y el status de los servicios
 
 ```
-# rpm -qa | grep ipa-server
-ipa-server-common-4.8.7-12.module+el8.3.0+8222+c1bff54a.noarch
-ipa-server-4.8.7-12.module+el8.3.0+8222+c1bff54a.x86_64
-ipa-server-dns-4.8.7-12.module+el8.3.0+8222+c1bff54a.noarch
-# ipactl status
+[root@server ~]# rpm -qa | grep ipa-server
+ipa-server-common-4.13.4-1.el9_9.noarch
+ipa-server-4.13.4-1.el9_9.x86_64
+ipa-server-dns-4.13.4-1.el9_9.noarch
+
+[root@server ~]# ipactl status
 Directory Service: RUNNING
 krb5kdc Service: RUNNING
 kadmin Service: RUNNING
@@ -229,7 +230,7 @@ ipa-dnskeysyncd Service: RUNNING
 ipa: INFO: The ipactl command was successful
 ```
 
-<p><br><a href="idm">volver</a></p>
+<p><br><a href="idm.md">volver</a></p>
 
 
 
