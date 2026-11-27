@@ -112,22 +112,21 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 Documentamos la version actual de IDM
 ```
-# rpm -qa | grep ipa-server
-ipa-server-dns-4.8.4-7.module+el8.2.0+6046+aaa49f96.noarch
-ipa-server-common-4.8.4-7.module+el8.2.0+6046+aaa49f96.noarch
-ipa-server-4.8.4-7.module+el8.2.0+6046+aaa49f96.x86_64
+[root@server ~]# rpm -qa | grep ipa-server
+ipa-server-common-4.13.1-3.el9_8.2.noarch
+ipa-server-4.13.1-3.el9_8.2.x86_64
+ipa-server-dns-4.13.1-3.el9_8.2.noarch
 ```
 
 Realizamos la actualización de rpms
 
 ```
-# yum update -y
+[root@server ~]# yum update -y
 ```
 
 Luego ejecutamos el comando ipa-server-upgrade
-
 ```
-[root@idm ~]# ipa-server-upgrade
+[root@server ~]# ipa-server-upgrade
 Upgrading IPA:. Estimated time: 1 minute 30 seconds
   [1/11]: stopping directory server
   [2/11]: saving configuration
@@ -157,8 +156,6 @@ RA cert already removed
 [Updating HTTPD service IPA configuration]
 [Updating HTTPD service IPA WSGI configuration]
 Nothing to do for configure_httpd_wsgi_conf
-[Migrating from mod_nss to mod_ssl]
-Already migrated to mod_ssl
 [Moving HTTPD service keytab to gssproxy]
 [Removing self-signed CA]
 [Removing Dogtag 9 CA]
@@ -169,9 +166,9 @@ dnssec-validation yes
 IPA CA DNS records already processed
 named user config '/etc/named/ipa-ext.conf' already exists
 named user config '/etc/named/ipa-options-ext.conf' already exists
+named user config '/etc/named/ipa-logging-ext.conf' already exists
 [Upgrading CA schema]
-CA schema update complete (no changes)
-[Verifying that CA audit signing cert has 2 year validity]
+CA schema update complete
 [Update certmonger certificate renewal configuration]
 Certmonger certificate renewal configuration already up-to-date
 [Enable PKIX certificate path discovery and validation]
@@ -179,29 +176,37 @@ PKIX already enabled
 [Authorizing RA Agent to modify profiles]
 [Authorizing RA Agent to manage lightweight CAs]
 [Ensuring Lightweight CAs container exists in Dogtag database]
+[Enabling LWCA monitor]
 [Adding default OCSP URI configuration]
 [Disabling cert publishing]
 [Ensuring CA is using LDAPProfileSubsystem]
 [Migrating certificate profiles to LDAP]
 [Ensuring presence of included profiles]
+Getting PKI server info from /pki/v2/info
 [Add default CA ACL]
 Default CA ACL already added
+Getting PKI server info from /pki/v2/info
+Getting PKI server info from /pki/v2/info
+[Updating ACME configuration]
 [Migrating to authselect profile]
 Already migrated to authselect profile
 [Create systemd-user hbac service and rule]
 hbac service systemd-user already exists
+[Add root@MIGRACIONES09.GOB.PE alias to admin account]
+Alias already exists
 [Setup SPAKE]
 [Setup PKINIT]
 [Enable server krb5.conf snippet]
+[Setup kpasswd_server]
 [Adding ipa-ca alias to HTTP certificate]
-Resubmitting HTTP cert tracking request
+Certificate is OK; nothing to do
 The IPA services were upgraded
 The ipa-server-upgrade command was successful
 ```
 
 Finalmente en caso sea necesario, reiniciar el servidor(Actualizaciones de Kernel)
 ```
-# reboot
+[root@server ~]# reboot
 ```
 
 Volver a validar el versionamiento del IDM y el status de los servicios
