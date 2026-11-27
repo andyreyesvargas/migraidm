@@ -74,26 +74,8 @@ The ipa-restore command was successful
 
 <h3><strong>## Actualización de la plataforma</strong></h3>
 
-Para actualizar la plataforma de IDM podemos apoyarnos en la suscripcion o en un repositorio con un nivel de actualizacion superior al que se tiene implementado, por ejemplo nuestro repositorio apunta al ISO de RHEL 8.2
+Para actualizar la plataforma de IDM podemos apoyarnos en la suscripcion o en un repositorio con un nivel de actualizacion superior al que se tiene implementado, por ejemplo nuestro repositorio apunta al ISO de RHEL 9.9
 
-```
-# cat /etc/yum.repos.d/rhel.repo
-[BaseOS]
-name=BaseOS
-enabled=1
-baseurl=ftp://192.168.100.203/rhel82/BaseOS
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-###
-[AppStream]
-name=AppStream
-enabled=1
-baseurl=ftp://192.168.100.203/rhel82/AppStream
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-```
-
-Antes de realizar cualquier mantenimiento se sugiere realizar respaldos de la plataforma a nivel de VM o una solucion de backup externa. Modificamos para que ahora apunte al RHEL 8.3
 ```
 [root@server ~]# vi /etc/yum.repos.d/rhel99.repo
 [baseos99]
