@@ -214,6 +214,7 @@ ipa: INFO: The ipactl command was successful
 
 <h3><strong>## Implementación de replica de IDM</strong></h3>
 Para implementar la replica, usamos el servidor replica con IP .12, primero este server debe ser registrado como cliente de IDM
+
 ```
 [root@replica ~]# yum install ipa-client -y
 192.168.109.10
