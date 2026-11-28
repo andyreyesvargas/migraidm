@@ -217,7 +217,6 @@ Para implementar la replica, usamos el servidor replica con IP .12, primero este
 
 ```
 [root@replica ~]# yum install ipa-client -y
-192.168.109.10
 [root@replica ~]# cat /etc/NetworkManager/system-connections/ens*  | grep dns
 dns=192.168.109.10;
 dns-search=migraciones09.gob.pe;
