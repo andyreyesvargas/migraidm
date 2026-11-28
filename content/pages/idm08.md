@@ -262,11 +262,6 @@ type=SYSCALL msg=audit(1795724596.543:168): arch=c000003e syscall=257 success=ye
 Por default los logs de los sistemas RHEL se depuran en la 4ta semana, sin embargo si el administrador desea cambiar esta configuración puede modificar el archivo `/etc/logrotate.conf` y reiniciar el servicio
 `# systemctl restart rsyslog`
 
-A pesar que se configura la rotación de logs para la depuratorio, existe la necesidad de mantener persistencia de estos eventos en algún lugar, por eso podemos apoyarnos en el cliente syslog, para redireccionar los logs del sistema al equipo del instructor donde @ para UDP y @@ para TCP
-<br>`# vi /etc/rsyslog.conf`
-<br>`*.* @@192.168.0.120:514`
-<br>`# systemctl restart rsyslog`
-
 
 <h3><strong>## Configurar syslog como servidor</strong></h3>
 
